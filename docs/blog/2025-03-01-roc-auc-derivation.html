@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Complete ROC & AUC Derivation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link to the "production-ready" stylesheet -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- Include MathJax for rendering LaTeX math -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
 
+  <header>
+    <div class="container">
+      <h1>Complete ROC &amp; AUC Derivation</h1>
+      <p><em>By Gabriel Dunin-Borkowski – <span style="white-space:nowrap;">Last Updated: 2025-03-01</span></em></p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ABSTRACT / INTRO TEXT -->
+    <section>
+      <p><strong>Abstract:</strong> As in the title. Made to clarify my own knowledge, based mostly on the great 
+      answer by 
+      <a href="https://stats.stackexchange.com/q/277721" target="_blank">Alebu at StackExchange</a>.
+      </p>
+    </section>
+
+    <hr/>
+
+    <!-- INTRODUCTION SECTION -->
+    <section>
+      <h2>1. Introduction</h2>
+      <p>
+        <em>(Note: We begin with definitions of the CDFs for negative and positive classes, 
+        then derive False Positive and True Positive Rates.)</em>
+      </p>
+      <p>
+        We consider two cumulative distribution functions (CDFs), one for the negative class 
+        and one for the positive class:
+      </p>
+      <pre>
+$$
+F_0(t) := P(S < t) \quad (\text{CDF for the negative class}),
+$$
+
+$$
+(\text{Symmetrically for the positive class}) \quad
+F_1(t) := P(S < t).
+$$
+      </pre>
+    </section>
+
+    <hr/>
+
+    <!-- DEFINING FPR AND TPR -->
+    <section>
+      <h2>2. Defining FPR and TPR</h2>
+      <pre>
+$$
+\text{FPR}(t) = x(t) = P(S > t \mid \text{negative}) = 1 - F_0(t),
+$$
+
+$$
+\text{TPR}(t) = y(t) = P(S > t \mid \text{positive}) = 1 - F_1(t).
+$$
+      </pre>
+      <p>
+        Hence, the ROC curve is represented by the points 
+        \(\bigl(\text{FPR}(t),\ \text{TPR}(t)\bigr)\equiv \bigl(x(t),\ y(t)\bigr)\).
+        We might write this as \((\,x(t),\ y(t)\,)\), with \(y(x(t)) = y(t)\).
+      </p>
+    </section>
+
+    <hr/>
+
+    <!-- ROC AND AUC SECTION -->
+    <section>
+      <h2>3. ROC and AUC</h2>
+      <p>
+        <em>(Here we see the integral definition of AUC in terms of \(y\) and \(x\). 
+        Essentially, the area under the ROC curve is the integral of the 
+        TPR/FPR tradeoff curve.)</em>
+      </p>
+      <pre>
+$$
+\text{AUC} = \int_{0}^{1} y(x)\,dx,
+$$
+      </pre>
+      <p>
+        where \(x(t) = 1 - F_0(t)\) and \(y(t) = 1 - F_1(t)\). 
+        Taking derivatives w.r.t. \(t\):
+      </p>
+      <pre>
+$$
+\frac{dx}{dt} = -f_0(t), \quad \frac{dy}{dt} = -f_1(t).
+$$
+
+$$
+dx = -f_0(t)\,dt,
+$$
+
+$$
+\int_{0}^{1} y\,dx 
+= \int_{0=x(t)}^{1=x(t)} \bigl[\,1 - F_1(t)\bigr]\bigl[-f_0(t)\bigr]\ dt.
+$$
+      </pre>
+    </section>
+
+    <hr/>
+
+    <!-- BEHAVIOR OF X(t) -->
+    <section>
+      <h2>4. Behavior of \(x(t)\) as \(t\) Varies</h2>
+      <p>
+        <em>(Key insight: \(x(t)\) decreases from 1 to 0 as \(t\) goes from \(-\infty\) to \(+\infty\).)</em>
+      </p>
+      <p>
+        In other words:
+      </p>
+      <pre>
+where x(t) goes from 1 to 0 as t goes from -∞ to +∞.
+
+ x(t) | F₀(t) | t
+------+-------+---------
+   0  |   1   | +∞
+   1  |   0   | -∞
+
+ F₀(t): 1 → 0  (for -∞ → +∞).
+      </pre>
+    </section>
+
+    <hr/>
+
+    <!-- FULL AUC DERIVATION -->
+    <section>
+      <h2>5. Full AUC Derivation</h2>
+      <p>
+        <em>(The integral for AUC in terms of the density \(f_0\) and cumulant \(F_1\).)</em>
+      </p>
+      <pre>
+$$
+\text{AUC} = \int_{-\infty}^{\infty} \bigl[1 - F_1(t)\bigr]\ f_0(t)\ dt.
+$$
+      </pre>
+      <p>
+        Where we could get rid of the negative sign due to the change in integration limits. 
+        Given \(\mathbf{P}(\Omega)=1\) and \(\mathbf{P}\emptyset\), an equivalent probabilistic interpretation emerges:
+      </p>
+      <pre>
+$$
+\text{AUC} = E_{S_0, S_1}\bigl[\mathbf{1}(S_1 > S_0)\bigr]
+= \mathbb{E}_{\,S_0 \sim f_0}\bigl[P(S_1 > S_0)\bigr].
+$$
+      </pre>
+      <p>
+        Interpreting integrals as the probability that a randomly selected positive score \(S_1\) 
+        exceeds a randomly selected negative score \(S_0\). 
+        Essentially, the AUC is the expected probability that a member of the positive class 
+        has a higher score than a member of the negative class.
+      </p>
+    </section>
+
+    <hr/>
+
+    <!-- CONCLUSION -->
+    <section>
+      <h2>6. Conclusion</h2>
+      <p>
+        The derivation starts from \(F_0(t)\) and \(F_1(t)\), 
+        defines FPR and TPR, and shows how the area under the ROC curve 
+        can also be seen as the probability that a random positive sample 
+        out-scores a random negative sample.
+      </p>
+    </section>
+
+    <hr/>
+
+    <!-- GINI -->
+    <section>
+      <h2>7. GINI</h2>
+      <p>
+        Assume \(AUC = \frac{1}{2}\). Then \(2 \cdot AUC - 1 = 0\). 
+        Write \(GINI = 2 \cdot AUC - 1.\) 
+        Thus, a GINI of <code>0</code> means your predictive power is no better than random; 
+        <code>1</code> would be perfect discrimination, and <code>-1</code> would be labels flipped.
+      </p>
+      <p>
+        Intuitively, GINI centers the AUC around zero and scales the halves to ones. 
+        That means for two random members of the positive and negative classes, 
+        it reflects the average rank difference or how much better your model does 
+        compared to chance.
+      </p>
+    </section>
+
+    <hr/>
+
+    <!-- ALTERNATIVE DERIVATION -->
+    <section>
+      <h2>8. Alternatively, a Quicker Way</h2>
+      <pre>
+$$
+\text{AUC} 
+= \int_{-\infty}^{\infty} \text{TPR}(t)\, d\bigl(\text{FPR}(t)\bigr)
+= \int_{0}^{1} \text{TPR}\bigl(\text{FPR}^{-1}(p)\bigr)\, dp.
+$$
+      </pre>
+      <p>
+        Where \(\text{FPR}^{-1}(p)\) is the threshold \(t\) s.t. \(\text{FPR}(t) = p\).  
+        Equivalently, using an indicator function approach:
+      </p>
+      <pre>
+$$
+\text{AUC} 
+= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
+ \mathbf{1}(x_1 > x_2)\, f_{X_1}(x_1)\, f_{X_2}(x_2)\, dx_1\, dx_2.
+$$
+      </pre>
+      <p>
+        This can be viewed as an application of convolution arguments or standard probability identities.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <p>&copy; 2025 Gabriel Dunin-Borkowski – All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
