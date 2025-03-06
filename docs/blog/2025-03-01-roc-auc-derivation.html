@@ -34,22 +34,42 @@
     <section>
       <h2>1. Introduction</h2>
       <p>
-        <em>(Note: We begin with definitions of the CDFs for negative and positive classes, 
-        then derive False Positive and True Positive Rates.)</em>
-      </p>
-      <p>
         We consider two cumulative distribution functions (CDFs), one for the negative class 
         and one for the positive class:
       </p>
       <p>
 $$
-F_0(t) := P(S < t) \quad (\text{CDF for the negative class}),
+F_0(t) := P(S < t\,\vert\, \text{negative}),
 $$
 
 $$
-(\text{Symmetrically for the positive class}) \quad
-F_1(t) := P(S < t).
+F_1(t) := P(S < t \,\vert\, \text{positive}).
 $$
+      </p>
+      <p>
+        To make this clearer, think of t as a red line which
+        divides two teams (a threshold, if you will). The realizations
+        of the random variable S which exceed the threshold t belong
+        to the positive team, and realizations below that threshold
+        belong to the negative team. This might seem unintuitive, since
+        the probability of belonging to the negative class if you belong
+        to the negative class is a hundred percent. The way to clarify
+        this is to introduce an auxiliary variable v and understand
+        that for a given value t, the CDF is actually measuring the
+        probability that the score will be below v, up to when v
+        catches up with t. So basically, the CDF for the negative class has
+        in its domain the values of v up to when v catches up with t.
+        Symmetrically, the CDF for the positive class has in its domain
+        the values of some w up to when w catches up with t. However,
+        as you might notice - this makes no sense, since we would get a CDF
+        with constant value equal to zero for the positive class. What's crucial
+        here is to understand that the positive and negative classes
+        are defined not in terms of theoretical distributions, but
+        rather in terms of empirical distributions. So: the CDF of the
+        negative class is actually the proportion of the negative class
+        correctly classified as negative by the decision rule, and the
+        CDF of the positive class is the proportion of the positive class
+        incorrectly classified as negative.
       </p>
     </section>
 
