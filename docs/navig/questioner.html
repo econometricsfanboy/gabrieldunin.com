@@ -50,7 +50,7 @@
 
     // Fetch the text file "questions.txt"
     // Each line of questions.txt should be one question
-    fetch('questions.txt')
+    fetch('/navig/questions.txt')
       .then(response => response.text())
       .then(data => {
         // Split into lines and trim
