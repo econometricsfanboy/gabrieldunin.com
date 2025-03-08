@@ -120,7 +120,8 @@
   Because \((\Delta t)^2 \ll \Delta t\) when \(\Delta t \to 0\), 
   we can discard terms like \(\mathcal{O}((\Delta t)^2)\). That is,
   higher exponents dominate when the exponent base goes to infinity,
-  but smaller exponents dominate when the exponent base goes to zero. Thus,
+  but smaller exponents dominate when the exponent base goes to zero.
+  Thus, in limit-land, we have:
 </p>
 
 <p>
@@ -135,7 +136,10 @@
   $$\Delta X_t \;\to\; \sigma_t\,dW_t \quad\text{as}\quad \Delta t \to 0.$$
   Squaring this,
   $$(\Delta X_t)^2 \;\to\; \sigma_t^2\, (dW_t)^2.$$
-  And in Itô calculus, \((dW_t)^2 = dt\). So:
+  And in Itô calculus, \((dW_t)^2 = dt\). To motivate this, recall that,
+  \( dW_t \sim O\left(\sqrt{\Delta t}\right) \), and therefore
+  \( \left(dW_t\right)^2 \sim O\left(\Delta t\right) \). So, if we take the
+  time difference to approach zero:
 </p>
 
 <p>
@@ -159,7 +163,8 @@
 <p class="explain">
   This expression is the renowned Itô's lemma. The second-order term in <em>x</em> 
   does not vanish because <em>(dW<sub>t</sub>)<sup>2</sup></em> is of order <em>dt</em>, 
-  yielding a non-zero contribution.
+  yielding a non-zero contribution. The distribution of test statistics have non-degenerate
+  asymptotic behavior.
 </p>
 
 <div class="boxed">
