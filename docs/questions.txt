@@ -1,3 +1,303 @@
-What is your biggest dream?
-How do you approach decision-making under uncertainty?
-Which place in Europe would you most like to visit?
+What are some projects or activities you’ve spent at least 10 hours on in the last month?
+What’s something that you’ve been thinking about recently? E.g. a topic or a problem or a random idea
+What’s something you worked on recently that you’re proud of?
+What’s something you changed your mind about or became more confused about recently?
+What are some of your favorite things about X?
+What are some of your least favorite things about X?
+What’s something that you wish more people knew about you?
+What are some things on your bucket list?
+What’s your earliest memory?
+What’s your favorite class you’ve taken in college?
+What’s your favorite place on campus?
+If you had a blog, what would you write about?
+What’s been keeping you busy this week?
+Should humans expand into space and build communities on other planets?
+If you had $10 million dollars, what would you do with it?
+If you had $1 billion dollars, what would you do with it?
+It’s 2019, and you’re the head creative director for Netflix’s upcoming film Don’t Look Up. The movie is about an impending apocalypse. A coworker suggests using an asteroid impact. “How silly,” you say. “A more realistic cause of an apocalypse is…”
+PBS called. An executive wants you to make a documentary series. An elite team of I researchers, screenwriters, camera specialists, audio engineers, video editors, and publicists – all at your fingertips. So what’s it about?
+If you had a time machine and wanted to make a positive impact on history, what would you do?
+How do you feel about AI?
+Are you procrastinating on anything?
+If you could plan one nearly perfect (but still actually realistic) day for yourself in the next few months, what would you spend that day doing? Describe that day, from when you wake up until you go to sleep.
+What type of content, books and media do you read/watch in your spare time? Any recommendations?
+What’s something that made you laugh recently? (Or could be “made you happy” and so on, and the time could be “today” or “this week” and so on)
+What’s been the best part of your day so far? (Or weekend, week, month, year.)
+What’s something you own that you think more people should have? What purchase of $100 or less has most impacted your life in recent memory?
+If you could only do 2 hours per day of focused work, what would you spend that time on?
+If you had to drop a class right now, what would it be?
+If you had to change majors, what would you switch to? What major or field of study would you choose if job prospects didn’t matter?
+What would you do with your life if you had no obligations to help others or earn money?
+When you feel overwhelmed or unfocused, or have lost your focus temporarily, what do you do?
+Who’s someone you’d like to meet?
+What have you been excited about lately? What are you excited about in your life right now?
+What’s something you’re looking forward to in the next month? (Or week, 3 months, etc. Could also be “something you’re nervous about” and so on.)
+What’s your thing? (Interpret however you want, e.g. job / hobby / personality trait)
+What are some musical artists who you’d recommend? Any particular songs?
+What’s your favorite restaurant in Ann Arbor?
+What’s somewhere you have enjoyed traveling to? (It doesn’t have to be far away)
+On a scale of 1-10, how messy is your room? 1 being the cleanest 10 a complete disaster. Are you happy with this level of messiness?
+What do my shoes tell you about me?
+Are you a morning person or a night owl?
+What’s your favorite place to go in your hometown (or somewhere you’ve lived in the past)?
+In what order would you give up your senses of sight, sound, smell, taste, and touch?
+What are some of your least favorite foods? How much of one of them would you eat for $100?
+What is your perfect meal? Describe it – everything from the company to the setting to the music to, of course, the food.
+Imagine two worlds exactly like our current world, except one lacks color and the other lacks music. Which world would you prefer and why?
+What’s your favorite {summer, fall, winter, spring} activity?
+What’s a website you enjoy or find useful?
+How do you feel about X? Do you like it or dislike it? Do you have any stories about it? X in {gardening, hiking, biking, flying, ping pong, etc}
+What’s a time when you made a valiant effort on a project while staying up really late?
+What is a topic that you love to talk about?
+What’s a topic that you love that other people often find boring or less interesting? Is there something you wish other people were more excited about?
+What’s a topic that many people love that you often find boring or less interesting? Is there something you wish other people were less excited about?
+If you could have a 1-hour conversation with anyone in the world alive or dead (but not fictional), who are some candidates and why?
+If you could live a year as a well-off citizen in any city in the world at any time in history, where and when? You can pick a few that come to mind.
+What are some key features of your dream home?
+What is a random fact that you find interesting?
+Do you have any secret talents?
+What’s in your note-taking app?
+What would you work on if you could get a grant to study anything?
+Imagine having a “remote control for life” that lets you press “rewind” on any 5-minute period and go back 5 minutes in time with your current knowledge. In what situations would you most appreciate this ability?
+What’s something interesting or special about the place where you grew up?
+If I visited your hometown, what local spots would you suggest I see?
+What’s a memorable conversation you had this week?
+If you could visit your younger self and hang out for a day, at which age would you like to visit yourself? (Assume this visit has no effect on the state of the world; it’s purely for fun.)
+If you had to rewrite your Common App college admissions essay right now, would you write about something different (and if so, what?) or keep the topic the same?
+If you could only listen to 5 albums for the next year, what would they be? (Or do musical artists or some other experience over some other length of time)
+What do you like to do to get exercise?
+What was the worst haircut you ever had?
+How do you spend your leisure time?
+Let's say that regardless of what job you have, you'll make $250,000 a year, more than enough to live comfortably without having to worry about expenses. Would your career plans change at all?
+What's your favorite article of clothing you own?
+What’s something you like about the place where you live? (Or dislike)
+What historical event do you wish you could experience?
+If you had unlimited money to spend on a 1-week vacation, where would you go and what might you do?
+What are some questions you like to ask or answer?
+How long do you think you could survive in a remote forest with no tools?
+If you had to replace one of your body parts with an extra-strong bionic part, what would you replace?
+Imagine that you started practicing an activity (e.g. a sport) at a young age and went on to become one of the top 100 performers in the world. For which activities do you think you could actually do this?
+Are there any podcasts you’d like to listen to again? (Or books, movies, etc)
+Do you believe any conspiracy theories have some truth to them?
+Should billionaires exist?
+If you had to identically repeat any single year of your life to date, without changing a thing (and with the same knowledge that you had at the time), which year would you relive?
+Are there limits to human creativity?
+If you could inherit a comfortable home in any city in the world that you could use but not sell, where would it be?
+Imagine that a magical technology creates a clone of you (a human with DNA that is virtually identical to your DNA). The clone has lived a life similar to yours, but their particular experiences were different (e.g. they grew up in a different place). If you had one hour to talk with this clone, what might you talk about?
+If you were to write a book, what would it be and why?
+How are you currently thinking about your career?
+How quickly could you speedrun the Industrial Revolution? Generally, if you were placed at a particular time in history (e.g. 1400s England) with no possessions but your memory, and some powerful political leaders gave you all the resources and power you needed, how long would it take you to invent X, or bring back modern technology? What would you do first? If you had a week to prepare before going back in time, what would you study or memorize?
+If you had ten minutes and King Henry VIII’s ear in the 1500s, how much could you accelerate the moon landing?
+What’s the best gift you’ve ever given or received?
+What skills and aptitudes do you currently have, and which ones do you want to develop?
+If you had a magic fairy following you around and trying to make you more productive, what would they do?
+How did you first get involved with X? What was most influential in getting you more involved? (X = something related to the event)
+What are your most important goals? Are you spending your time on them?
+Is there anyone you can reach out to who could help you achieve your goals? Why haven’t you reached out?
+What do you value most in a friendship?
+What important truth do very few people agree with you on?
+Do you think older people are less open to new ideas? Will this happen to you?
+How “good” might the future be, if humanity doesn’t go extinct?
+Do you feel optimistic or pessimistic about how conventional moral values will change in the future?
+What sort of people commit atrocities? What causes them to do this?
+Do you think farmed animals matter, morally? How much? E.g. how many happy cow lives would you trade for one happy human life? Is your response different for dogs?
+Is it ethical to eat meat?
+Are we morally obligated to help people who are not alive yet?
+A year has passed. You look back on what you’ve done in that time and think "Argh, if only I'd started doing X sooner." What might X be?
+How risk averse are you? Are you okay focusing on risky projects if the potential benefits are high enough, say if you only have a 5% chance of succeeding, but if you do, it can do a lot of good?
+What’s something you miss that surprises you?
+How likely is it that our observable universe contains aliens? How valuable would a future influenced by them rather than us be?
+What are your transformative AI timelines (and to what extent do your plans currently make sense given your timelines?)
+Is there any way you can replace your current career plan with one that’s 10X more ambitious?
+Are there any options outside of the “default” career path in your area that you might be neglecting to consider? Are there any options that are unconventional or atypical that you might want to consider more carefully?
+What is a challenge you’ve overcome this year that felt satisfying?
+What do you spend a silly amount of money on?
+How do you blow off steam?
+What is an unusual habit or absurd thing that you love doing?
+In the last few years, what new belief, behavior, or habit has most improved your life?
+If you could live in any fictional universe, what would it be?
+What puts you in a state of “flow”? What does it feel like?
+Do you have any role models or people you look up to?
+Who are some people that inspire you and why?
+Imagine you get to (anonymously) institute one new social norm, or remove an existing one. What would you choose?
+If you could change into any animal for 24 hours, which one would you choose?
+What difficult or uncomfortable experience would you recommend to (some) other people?
+Overrated or underrated? {X, Y, Z, …} Sample list: AI, Genghis Khan, the first moon landing, soccer, Pokémon, all nighters, Taylor Swift, salt, Canada Goose jackets, UBI, scenic drives, air conditioning; people can add their own as they go through these.
+Do we have “free will”? Try answering without using the phrase “free will.”
+Do you think enlightenment is real?
+What’s a technology that you’d prefer not to exist?
+If you could, would you spend time in a simulation of reality where you experience lots of happiness and satisfaction? How long would you stay (assume you can only enter once, but could stay as long as you want)?
+If you could live any (finite) number of years of life (and remain in good health) where each day is similar to your current day-to-day experience, what number would you choose?
+If you could be immortal for any finite length of time, and the rest of the world mostly continued as it is currently going, how many years would you like to live?
+What was your first impression of me?
+Were you popular in high school?
+What’s your number one goal for the next month?
+If you had to give a TED talk, what would it be about? (Or teach a high school class, sell an online course, etc)
+Is awkward silence bad?
+What are the open tabs in your browser right now? Or what tabs are usually open in your browser?
+If a new medicine were developed that would cure Alzheimer’s but cause a fatal reaction in 1 percent of those who took it, would you want it to be released to the public?
+Would you accept $1,000,000 to leave this country and never return?
+Would you rather be extremely successful professionally and have a tolerable yet unexciting private life, or have an extremely happy private life and only a tolerable and uninspiring professional life?
+Do you have any specific long-term goals? What is one and how do you plan on reaching it?
+Do you feel that advice from older people carries a special weight because of their greater experience?
+Do you feel uncomfortable going alone to either dinner or a movie? What about going on a vacation by yourself?
+What feuds would you want to mend if you could do so without losing face?
+If you were having difficulty on an important test and could safely cheat by looking at someone else's paper, would you do so?
+If you fell off a very high cliff (15-30 seconds), what would you think about on the way down?
+Imagine that a massive, planet-destroying asteroid is going to collide with Earth in 5 hours. It will strike near your current location, and there is no way to escape. What would you spend those 5 hours doing?
+Suppose you knew that you were going to die instantly (but painlessly) in exactly 7 days. What would you spend your last week doing?
+Do you always like receiving compliments?
+What do you think of the idea that “ignorance is bliss”? (Or “power corrupts,” “trust your gut,” and other aphorisms / adages / proverbs. Quotes would work too.)
+In conversations, do you tend to listen or talk more?
+When you hear the word {money, age, utopia, perfection, death, fame, reality, consciousness, spirituality, happiness, beauty, transcendence, nostalgia, bliss, ignorance etc}, what’s the first thing that comes to mind? 
+What makes you grumpy?
+What are you really into at the moment?
+Imagine the next 3 days have passed and they went REALLY well for you. What happened?
+Which parts of your personality in public are the most energy-intensive for you to maintain?
+Is there any topic that’s totally resistant to politicization?
+Have humans gotten more or less moral over the last 200 years?
+What are some things you’re grateful for? They can be small.
+What comes to mind as a beautiful view that you’ve seen (e.g. on a hike or in a city)?
+What is a trivial thing about which you have a strong opinion?
+Has a piece of media (e.g., film, book, song) ever changed the way you think about the world?
+Think of the things you do that have little to do with work or career success. What comes to mind in the category of “accomplishments / skills I’m proud of”?
+What do you think about this statement: X? And what evidence in the future (e.g. events, analyses, personal experiences, etc) might cause you to change your mind? X in {all drugs should be legalized, the voting age should be lowered, social media is healthy overall, lying is almost always a bad idea, we live in a simulation, aliens probably exist, etc}
+Have you ever felt obsessed about work? What was it like?
+When in your life have you felt most engaged and excited about your work? What aspects of the work might have contributed to this feeling?
+Imagine you could push a button and have everyone on Earth speak English at a native level – would you do it? What if the button caused everyone to forget how to speak their current native languages?
+What is a belief you hold that is uncommon in your bubble? Or that some of your close friends disagree with you about?
+What’s your aesthetic? How did you arrive at it?
+What’s a memory you really like from college? (Or high school, middle school, etc)
+What excites you about the world in which we live? And what frustrates you?
+If you knew that you would die in 2 years, would you change anything about the way you’re living now? Why?
+In what areas do you have an excellent aesthetic judgment? Where do you have “killer taste”?h
+Are there any skills that you consistently practice?
+What do you do when you’re having trouble falling asleep?
+What are some of your favorite scents?
+Do you care about being polite and civil, generally speaking? In what situations are you most impolite?
+Imagine a demon which says to you: “This life as you now live and have lived it you will have to live once again and innumerable times again (starting in 2 minutes); and there will be nothing new in it. In other words, you will relive your entire life infinitely many times, and every experience will be exactly the same as it’s been so far, and at the end of each life I will wipe your memory of everything that has happened before sending you back to start a new life.” How would you feel about being in this predicament? (This is an idea from Nietzsche.)
+What actions or thoughts help you to think more creatively and “outside the box”?
+In disagreements, do you ever notice your urge to be right growing stronger than your curiosity for the truth? How do you handle this?
+Imagine you’re in a relationship and it’s everything you could have hoped for; they’re the “person of your dreams.” How much money would you need to receive in order to agree to break up and never see this person again?
+How much do you care about what other people think of you?
+Do you think it’s possible for people to be in a long-term relationship and never have a hurtful argument? Why do (probably) most relationships come nowhere close to this?
+Is there such a thing as a “perfect person”? Do you know anyone in history (maybe alive today) that came close?
+Do you own any physical items with significant sentimental value?
+How well do you handle criticism?
+Imagine you could double or halve the frequency with which you experience awe. Which would you choose? (Or other experiences like anger, sadness, excitement, etc)
+If you could have video footage of any one event in your life, what event would you choose?
+How have you been doing this past month?
+Has anyone changed a deeply-held belief you had? If so, how?
+Would you like to be famous? In what way?
+What makes you sad/upset/worried/bored frequently?
+Have any of your life goals recently changed?
+Your house, containing everything you own, catches fire. After saving your loved ones and pets, you have time to safely make a final dash to save any one item. What would it be? Why?
+What’s a cliché that you think is BS? What’s a cliché that you think holds truth?
+Do you have any mantras or catchphrases or helpful thoughts that you often find yourself thinking?
+What is something that's easy for you but difficult for most other people? (Or the other way around)
+Are there any quotes that you can recite from memory?
+Is there a story that you always fall back on—one you've told so many times you nearly have it memorized?
+Did your family have any traditions you enjoyed as a kid?
+What are some times when you have lost track of time?
+Is extreme torture ever justified?
+Is pain a necessary part of the human condition?
+Is it ethical to have children? What are some relevant considerations?
+If you had to swim for an afternoon in a liquid other than water, what would you want it to be?
+What's an idea that, if it became widely known and adopted/used, would greatly improve the world?
+What's a commonly believed idea that you think is actually wrong or misconceived?
+What’s a topic area that you think is important and worth learning about that very few people seem to know about or have an opinion on?
+What do you appreciate about X?
+How peaceful or calm have you been feeling today?
+What do you think are the most important problems? Why aren’t you working on them? (Hamming questions)
+What is most holding you back? What are your biggest bottlenecks?
+Do you consistently feel motivated about what you work on? What goes wrong? Give a concrete example? How frequently do you use obligations to motivate yourself? Do you feel guilty and anxious all of the time?
+What’s something you’re afraid to ask where doing so could be really valuable (e.g. asking for a favor, or about a topic you feel you should know more about)
+If you say “Everything in my life is fine, and I’m on track to achieve many of my goals,” does anything feel untrue about that?
+Is there any problem you’re experiencing that your friends don’t know about?
+What are some of your favorite things about yourself? What are some of your least favorite things about yourself?
+When did you last cry in front of another person? By yourself?
+Have your expectations of friends changed over time?
+If you had a gigantic billboard in Times Square, what would you put on it?
+When was the last time you experienced burnout? How likely do you think it is that you will experience burnout in the future? What are some steps you can take to reduce that likelihood?
+How do you stay in touch with your friends?
+Summarized in a few sentences, what is your life story?
+What would you say is the greatest accomplishment in your life so far? Ok to brag.
+What’s an irrational fear you have?
+When someone asks you how you’re doing, what do you say?
+What would you tell your 16-year old self?
+What’s the best piece of advice you’ve ever received?
+What is something you wish you had known earlier in life?
+What worldview is most difficult for you to empathize with? Why might that worldview be more correct than you think?
+Is there a part of you that doesn’t want to succeed at your goals? If so, why?
+What about yourself do you try hardest to show off?
+Have you ever cried tears of joy?
+What is a time you’ve felt scared?
+Do you consider “being happy” to be different from “being at peace”?
+How old do you feel, emotionally?
+Is there anything you’re addicted to?
+Are you afraid of death? Why or why not?
+Where do you find fulfillment in your life? (Or purpose, connection, humor, etc)
+How much control do you feel you have over your own emotions?
+How are you, really?
+Which of your parents’ pe,rsonality traits do you want to keep?
+Are you a “people pleaser”?
+What’s the most physically sick you’ve ever been?
+What is one of the worst physical pains you’ve experienced?
+What is a dream you let go of?
+When did you last yell at someone? Did you later regret it?
+What are your most compulsive habits? Do you regularly struggle to break these habits?
+How close and warm is your family? Do you feel your childhood was happier than most other people's?
+If you had to leave your job / school today, what would you do instead?
+When you do something ridiculous, how much does it bother you to have other people notice it and laugh at you?
+From which groups or individuals do you seek approval?
+What do you need that you’re not currently getting?
+What’s a trait that people associate with you that doesn’t accurately reflect your inner life or who you are?
+Who is the most important person in your life? What could you do to improve the relationship?
+While arguing with a close friend on the telephone, they get angry and hangs up. Assuming they are at fault and make no attempt to contact you, how long would you wait to get in touch with them?
+Do you judge others by higher or lower standards than you use to judge yourself?
+What things, if any, are too personal to discuss with anyone but your own mind?
+Have you ever disliked someone for being luckier or more successful than you?
+What do you like best about your life? Least?
+Imagine it’s 1 year in the future, and you have failed in some big way at achieving your main goals for the year. What happened?
+Imagine it’s 1 year in the future. You think “dang, I wish I had been thinking about X so much earlier! I can’t believe I missed it.” What is X?
+To what extent do you try to distract yourself from direct exposure to the contents of your own mind?
+Is there anything that ever keeps you up at night?
+Do you ever avoid information that you know might change your behavior or life plans?
+What are your favorite sounds? Smells?
+Imagine that you’re on your deathbed looking back. What are some things you might regret (assuming nothing changes about your current life trajectory)?
+How much independence did you get from your parents growing up? Do you like the level of independence you had/have?
+What emotion do you feel most often?
+How do you assign self-worth or self-esteem?
+What’s one specific fact about what it’s like to live in your particular body?
+Do you have an enemy or nemesis?
+Is there something you’ve dreamed of doing for a long time? Why haven’t you done it?
+What does it mean to you to live a good life?
+What is the meaning of life? What is meaningful in life? Are these questions different?
+Do you feel fulfilled by your work? Why or why not?
+What were the major tipping points in your life that shaped your identity most? How did they affect you?
+Would you describe yourself as content? Why or why not?
+If you could change one decision you made in your life, what would it be? Why?
+What was the worst 3-month period of your life? What happened?
+What was a period of your life in which you felt particularly lonely? How did you respond to this loneliness?
+Imagine you have the ability to permanently stop feeling one emotion, and you have to pick one emotion to do this to. Which do you pick? Will anything bad happen to you as a result of that choice?
+What do you see as your responsibilities to the world?
+Do you think your external appearance is a good reflection of your conception of yourself?
+Do you think of yourself as special or exceptional in any way?
+What do you think is the best thing you could start doing to increase your happiness?
+How is the very best version of yourself different from the way you sometimes behave?
+During what period of your life were you happiest, and why do you think you were so happy in that time?
+How much do you consider prestige, status, or approval when making decisions or taking actions?
+How convincing do you find your own self-criticism?
+Is there a compliment you received recently that you felt very happy about?
+Is there something you wish everybody knew about you without you having to tell them?
+Is there anything that is too serious to ever be joked about?
+Do you think it’s unhealthy to X? (E.g. hold grudges, criticize people behind their back, be cynical)
+What is one thing you're tired of telling/explaining to people?
+What is a character trait that instantly makes you like someone or think more highly of them?
+What is a completely rational, justified fear that you have?
+Are there any patterns to the things you think about before you fall asleep?
+What are you currently worrying about, if anything? What could happen to make you stop worrying about it?
+Are there any significant problems in your life that you consider to be mostly your fault?
+What’s a big risk that you’re happy you took?
+What’s something important you know you should do, but you’re afraid of doing?
+What magnifies your spirit?
