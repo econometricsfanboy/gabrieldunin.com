@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question Viewer</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2em;
+      font-family: sans-serif;
+    }
+    h1 {
+      margin-bottom: 1em;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      padding: 0.75em 1em;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a99;
+    }
+    #questionBox {
+      margin-top: 2em;
+      font-size: 1.25em;
+      max-width: 600px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 1em;
+      border-radius: 4px;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Question Viewer</h1>
+  
+  <button id="getQuestionBtn">Get a Question</button>
+  <div id="questionBox"></div>
+
+  <script>
+    let questions = [];
+    let currentIndex = 0;
+
+    // Fetch the text file "questions.txt"
+    // Each line of questions.txt should be one question
+    fetch('questions.txt')
+      .then(response => response.text())
+      .then(data => {
+        // Split into lines and trim
+        questions = data
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line.length > 0);
+
+        // Optionally shuffle questions if you want a random order from the start:
+        // shuffleArray(questions);
+      })
+      .catch(error => {
+        console.error("Error loading questions:", error);
+      });
+
+    document.getElementById('getQuestionBtn').addEventListener('click', () => {
+      // If no questions loaded yet, show a placeholder
+      if (questions.length === 0) {
+        document.getElementById('questionBox').innerText = "No questions found or file not loaded yet.";
+        return;
+      }
+
+      // Show the question at currentIndex
+      document.getElementById('questionBox').innerText = questions[currentIndex];
+
+      // Move to the next question (wrap around at the end)
+      //currentIndex = (currentIndex + 1) % questions.length;
+    });
+
+    // If you want a purely random question each time, comment out the above approach
+    // and use something like this in the click handler:
+    //
+    let randomIndex = Math.floor(Math.random() * questions.length);
+    document.getElementById('questionBox').innerText = questions[randomIndex];
+
+    // Optionally define a shuffle function for an initial random order
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+  </script>
+</body>
+</html>
