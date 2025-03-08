@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Deriving Itô's Lemma</title>
+  
+  <!-- Load MathJax for LaTeX rendering -->
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+  ></script>
+  
+  <style>
+    /* Basic styling */
+    body {
+      max-width: 700px;
+      margin: 2em auto;
+      font-family: sans-serif;
+      line-height: 1.4;
+    }
+    h1, h2, h3 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+    code, pre {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+    }
+    .explain {
+      color: rgb(0, 0.3, 0.7); /* matches the "explain" color in your LaTeX */
+    }
+    .boxed {
+      border: 1px solid #333;
+      padding: 0.75em;
+      margin: 1em 0;
+      background: #fcfcfc;
+    }
+    .centered {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Title and Intro -->
+<h1>Deriving Itô's Lemma</h1>
+
+<p class="explain">
+  This page manually replicates our LaTeX source in HTML, preserving color,
+  math, and structure. Equations are rendered with MathJax.
+</p>
+
+<hr />
+
+<!-- Introduction -->
+<h2>Introduction</h2>
+
+<p class="explain">
+  We start by defining an Itô process <em>X<sub>t</sub></em> with drift 
+  <em>&mu;<sub>t</sub></em> and diffusion <em>&sigma;<sub>t</sub></em>. 
+  We also recall that <em>W<sub>t</sub></em> is a Wiener (Brownian) process, 
+  with <code>dW<sub>t</sub> ~ O(&sqrt;&Delta;t)</code>.
+</p>
+
+<p>
+  Let 
+  $$dX_t = \mu_t\,dt + \sigma_t\,dW_t,$$ 
+  where \(W_t\) is a standard Brownian motion.
+</p>
+
+<p>
+  We consider a function \(f = f_t(X_t)\). We want to determine how 
+  \(f_t(X_t)\) evolves over an infinitesimal time step, i.e., we want 
+  \(df_t\).
+</p>
+
+<!-- Section: Taylor Expansion -->
+<h2>Taylor Expansion</h2>
+
+<p class="explain">
+  We use Taylor's theorem in multiple dimensions to expand the increment 
+  &Delta;f. We keep terms up to second order in &Delta;x, since higher-order 
+  terms become negligible in the Itô limit.
+</p>
+
+<p>
+  By Taylor's theorem,
+  $$\Delta f = f\bigl(t+\Delta t,\,x+\Delta x\bigr) \;-\; f(t,x).$$
+</p>
+
+<p>
+  Hence:
+  $$\Delta f \;=\; 
+    \frac{\partial f}{\partial t}\,\Delta t
+    \;+\; \frac{1}{2}\,\frac{\partial^2 f}{\partial t^2}\,(\Delta t)^2
+    \;+\; \frac{\partial f}{\partial x}\,\Delta x
+    \;+\; \frac{1}{2}\,\frac{\partial^2 f}{\partial x^2}\,(\Delta x)^2
+    \;+\;\cdots.$$
+</p>
+
+<p>
+  Because \((\Delta t)^2 \ll \Delta t\) when \(\Delta t \to 0\), 
+  we often discard terms like \(\mathcal{O}((\Delta t)^2)\). Thus,
+</p>
+
+<p>
+  $$\Delta f \;\approx\; 
+    \frac{\partial f}{\partial t}\,\Delta t
+    \;+\; \frac{\partial f}{\partial x}\,\Delta x
+    \;+\; \frac{1}{2}\,\frac{\partial^2 f}{\partial x^2}\,(\Delta x)^2.$$
+</p>
+
+<p>
+  Recall \(dX_t = \mu_t\,dt + \sigma_t\,dW_t\). In the infinitesimal limit,
+  $$\Delta X_t \;\to\; \sigma_t\,dW_t \quad\text{as}\quad \Delta t \to 0.$$
+  Squaring this,
+  $$(\Delta X_t)^2 \;\to\; \sigma_t^2\, (dW_t)^2.$$
+  And in Itô calculus, \((dW_t)^2 = dt\). So:
+</p>
+
+<p>
+  $$(\Delta X_t)^2 \;\to\; \sigma_t^2\,dt.$$
+</p>
+
+<!-- Section: Ito's Lemma -->
+<h2>Itô's Lemma</h2>
+
+<p>
+  Putting it all together, in differential form:
+</p>
+
+<p>
+  $$df_t(X_t) \;=\;
+    \frac{\partial f}{\partial t}\,dt
+    \;+\; \frac{\partial f}{\partial x}\,dX_t
+    \;+\; \frac{1}{2}\,\frac{\partial^2 f}{\partial x^2}\,\sigma_t^2\,dt.$$
+</p>
+
+<p class="explain">
+  This expression is the renowned Itô's lemma. The second-order term in <em>x</em> 
+  does not vanish because <em>(dW<sub>t</sub>)<sup>2</sup></em> is of order <em>dt</em>, 
+  yielding a non-zero contribution.
+</p>
+
+<div class="boxed">
+  <strong>Final form:</strong><br/>
+  \( \displaystyle
+    df_t(X_t) 
+    = \frac{\partial f}{\partial t}\,dt 
+      + \frac{\partial f}{\partial x}\,\bigl(\mu_t\,dt + \sigma_t\,dW_t\bigr)
+      + \tfrac{1}{2}\,\frac{\partial^2 f}{\partial x^2}\,\sigma_t^2\,dt.
+  \)
+</div>
+
+<p>
+  Due to the non-vanishing quadratic variation of \(\{W_t\}\),
+  the second derivative term remains in the final differential of \(f\). 
+  This is the essence of Itô's lemma.
+</p>
+
+<!-- Conclusion -->
+<hr />
+<p class="centered">
+  <em>
+    Because quadratic variation (of Brownian motion) never disappears, 
+    the second-order term in the Taylor expansion remains.
+  </em>
+</p>
+
+</body>
+</html>
