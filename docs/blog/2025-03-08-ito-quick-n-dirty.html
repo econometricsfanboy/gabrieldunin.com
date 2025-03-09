@@ -28,7 +28,7 @@
       padding: 0.2em 0.4em;
     }
     .explain {
-      color: rgb(0, 0.3, 0.7); /* matches the "explain" color in your LaTeX */
+      color: rgb(0, 0.3, 0.7); /* matches the "explain" color in our LaTeX */
     }
     .boxed {
       border: 1px solid #333;
@@ -101,13 +101,12 @@
 </p>
 
 <p>
-  By Taylor's theorem,
   $$\Delta f = f_{t+\Delta t}\bigl(x+\Delta x\bigr) \;-\; f_t(x).$$
   $$\Delta f = f\bigl(t+\Delta t,\,x+\Delta x\bigr) \;-\; f(t,x).$$
 </p>
 
 <p>
-  Hence:
+  Hence, by Taylor's theorem:
   $$\Delta f \;=\; 
     \frac{\partial f}{\partial t}\,\Delta t
     \;+\; \frac{1}{2}\,\frac{\partial^2 f}{\partial t^2}\,(\Delta t)^2
