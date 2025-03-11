@@ -1,11 +1,11 @@
 <article>
     {% for item in site.data.listofposts %}
-        <br>  
-        <div style="display: flex; align-items: center; background-color:rgb(223, 230, 232);">
-            <p style="margin: 15px; padding: 10px;"> date: {{item.date}} </p>
-            <a href="{{ item.link }}" style="margin: 15px; padding: 20px;">
-                {{ item.name }}
-            </a>
-      </div>
+    <br>  
+    <div style="display: flex; align-items: center; background-color:rgb(223, 230, 232);">
+        <p style="margin: 15px; padding: 10px;"> date: {{item.date}} </p>
+        <a href="{{ item.link }}" style="margin: 15px; padding: 20px;">
+            {{ item.name }}
+        </a>
+    </div>
     {% endfor %}
 </article>
