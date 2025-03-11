@@ -1,0 +1,8 @@
+{% for item in site.data.listofposts %}
+  <div style="display: flex; align-items: center; background-color:rgb(223, 230, 232);">
+    <p style="margin: 15px; padding: 10px;"> {{post.date}} </p>
+    <a href="{{ post.link }}" style="margin: 15px; padding: 20px;">
+            {{ post.name }}
+    </a>
+  </div>
+{% endfor %}
