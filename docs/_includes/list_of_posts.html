@@ -2,10 +2,10 @@
     {% for item in site.data.listofposts %}
     <br>  
     <div style="display: flex; align-items: center; background-color:rgb(223, 230, 232); margin-left: 10px; margin-right: 10px;">
-        <p style="margin: 15px; padding: 10px;"> date: {{item.date}} </p>
         <a href="{{ item.link }}" style="margin: 15px; padding: 20px;">
             {{ item.name }}
         </a>
+        <p style="margin: 15px; padding: 10px;"> date: {{item.date}} </p>
     </div>
     {% endfor %}
 </article>
