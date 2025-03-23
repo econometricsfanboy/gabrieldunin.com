@@ -54,3 +54,4 @@ plugins:
 include:
   - _includes
   - _layouts
+  - css
