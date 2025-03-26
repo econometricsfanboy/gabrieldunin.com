@@ -1,0 +1,58 @@
+<!-- _layouts/webapp.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- You can move your style block here, or link an external stylesheet -->
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2em;
+      font-family: sans-serif;
+    }
+    h1 {
+      margin-bottom: 1em;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      padding: 0.75em 1em;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a99;
+    }
+    #questionBox {
+      margin-top: 2em;
+      font-size: 1.25em;
+      max-width: 600px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 1em;
+      border-radius: 4px;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/about.html' | relative_url }}">About</a>
+      <a href="{{ '/questioner.html' | relative_url }}">Icebreakers</a>
+    </nav>
+  </header>
+
+  <!-- This is where the page-specific HTML goes -->
+  {{ content }}
+
+  <!-- If you want global scripts across all pages, place them here -->
+</body>
+</html>
