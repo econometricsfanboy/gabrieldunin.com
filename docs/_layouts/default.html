@@ -1,12 +1,27 @@
+<!-- _layouts/default.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>{{ page.title }}</title>
-  <!-- Additional metadata, scripts, styles, etc. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Link to main stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-  <!-- The content of each page is injected here -->
-  {{ content }}
+  <header>
+    <h1>Gabriel’s Blog</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/questioner.html">Icebreakers</a>
+    </nav>
+  </header>
+  
+  <!-- The page-specific content goes here -->
+  <main style="max-width:700px; margin:2rem auto; font-family:sans-serif; line-height:1.6;">
+    {{ content }}
+  </main>
+  
 </body>
 </html>
