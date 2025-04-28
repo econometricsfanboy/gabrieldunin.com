@@ -17,6 +17,18 @@
     gtag('config', 'G-QK1BR8X0MN');
   </script>
   {{ script_injection }}
+  <!--Example USAGE:
+        ---
+        layout: default
+        ---
+        {% capture script_injection %}
+          <script
+            id="MathJax-script"
+            async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+          ></script>
+        {% endcapture %}
+  -->
 </head>
 <body>
   <header>
