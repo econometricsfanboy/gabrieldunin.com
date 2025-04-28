@@ -175,3 +175,27 @@ mjx-container[jax="CHTML"][display="true"] {
     margin: 1em 0;
     background: #fcfcfc;
    }
+
+/* BUTTONS AND QUESTIONBOXES, ON WHICH THE QUESTIONER APP DEPENDS */
+    button {
+      background-color: #007acc;
+      color: white;
+      padding: 0.75em 1em;
+      border: none;
+      border-radius: 4px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a99;
+    }
+    #questionBox {
+      margin-top: 2em;
+      font-size: 1.25em;
+      max-width: 600px;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 1em;
+      border-radius: 4px;
+      background: #f9f9f9;
+    }
