@@ -1,32 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Itô's Lemma - Quick n' Dirty</title>
-  
-  <!-- Load MathJax for LaTeX rendering -->
-  <script
-    id="MathJax-script"
-    async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
-  ></script>
-  
+---
+layout: blog
+title: "Itô's Lemma - Quick n' Dirty"
+mathjax: true
+date: 2025-03-01
+---
+
+{% capture script_injection %}  
   <style>
-    /* Basic styling */
-    body {
-      max-width: 700px;
-      margin: 2em auto;
-      font-family: sans-serif;
-      line-height: 1.4;
-    }
-    h1, h2, h3 {
-      margin-top: 1em;
-      margin-bottom: 0.5em;
-    }
-    code, pre {
-      background: #f8f8f8;
-      padding: 0.2em 0.4em;
-    }
     .explain {
       color: rgb(0, 0.3, 0.7); /* matches the "explain" color in our LaTeX */
     }
@@ -36,30 +16,8 @@
       margin: 1em 0;
       background: #fcfcfc;
     }
-    .centered {
-      text-align: center;
-    }
   </style>
-</head>
-<body>
-
-<header>
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../about.html">About</a>
-  </nav>
-  <div class="container">
-    <h1>Ito's lemma - quick and dirty</h1>
-    <p>
-      <em>
-        By Gabriel Dunin-Borkowski – 
-        <span style="white-space:nowrap;">
-          Last Updated: <?php echo date("Y-m-d", filemtime(__FILE__)); ?>
-        </span>
-      </em>
-    </p>
-  </div>
-</header>
+{% endcapture %}
 
 <p class="explain">
   This page manually replicates our LaTeX source in HTML, preserving color,
