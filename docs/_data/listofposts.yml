@@ -4,3 +4,6 @@
 - name: Complete ROC & AUC Derivation
   link: blog/2025-03-01-roc-auc-derivation.html
   date: Mar 1, 2025
+- name: Random Utility Model
+  link: blog/2025-04-27-Random-Utility-Maximization.html
+  date: April 28, 2025
