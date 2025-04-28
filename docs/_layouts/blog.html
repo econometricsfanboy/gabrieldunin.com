@@ -1,11 +1,11 @@
 ---
 layout: default
 ---
-{% capture script_injection %}
-  <!-- Load MathJax for LaTeX rendering -->
+{% if page.mathjax %}
+  <!-- Add mathjax: true to the front matter to load MathJax for LaTeX rendering. -->
   <script
     id="MathJax-script"
     async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
   ></script>
-{% endcapture %}
+{% endif %}
