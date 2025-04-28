@@ -52,7 +52,13 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Gabriel Dunin-Borkowski. Webpage under construction. Last Updated: {{ site.time | page.date: "%Y-%m-%d" }}</p>
+    <p>&copy; 2025 Gabriel Dunin-Borkowski. Webpage under construction. Last Updated:
+        {% if page.date %}
+          {% assign update_source = page.date %}
+        {% else %}
+          {% assign update_source = site.time %}
+        {% endif %}
+      {{ update_source | date: "%Y-%m-%d" }}</p>
   </footer>
 </body>
 </html>
