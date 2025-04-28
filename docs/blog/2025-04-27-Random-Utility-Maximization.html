@@ -14,7 +14,7 @@ date: 2025-04-27
     <section>
       <h2>1. The Random Utility Model Framework</h2>
       <p>
-        The RUM is a workhorse for modeling individual choice, including the decision to migrate. The core idea is that an individual $i$ evaluates the utility $U_{ij}$ derived from choosing alternative $j$ (e.g., a location). This utility is assumed to have two components: a systematic part $V_{ij}$, which depends on observable characteristics, and a random, unobserved part $\epsilon_{ij}$.
+        The RUM is a workhorse for modeling individual choice, including the decision to migrate. The core idea is that an individual \(i\) evaluates the utility \(U_{ij}\) derived from choosing alternative \(j\) (e.g., a location). This utility is assumed to have two components: a systematic part \(V_{ij}\), which depends on observable characteristics, and a random, unobserved part \(\epsilon_{ij}\).
       </p>
       <p>
 $$
@@ -22,7 +22,7 @@ U_{ij} = V_{ij} + \epsilon_{ij}
 $$
       </p>
       <p>
-        An individual will choose the alternative $j$ from their available choice set $C_i$ that offers the highest utility.
+        An individual will choose the alternative \(j\) from their available choice set \(C_i\) that offers the highest utility.
       </p>
       <p>
 $$
@@ -30,7 +30,7 @@ $$
 $$
       </p>
       <p>
-        Since the $\epsilon_{ij}$ terms are random, we can only speak of the *probability* that alternative $j$ is chosen. This probability, $P_{ij}$, is the chance that the utility of $j$ exceeds the utility of all other options $k$ in the choice set $C_i$.
+        Since the \(\epsilon_{ij}\) terms are random, we can only speak of the *probability* that alternative \(j\) is chosen. This probability, \(P_{ij}\), is the chance that the utility of \(j\) exceeds the utility of all other options \(k\) in the choice set \(C_i\).
       </p>
       <p>
 $$
@@ -46,7 +46,7 @@ P_{ij} = P(\epsilon_{ik} - \epsilon_{ij} \le V_{ij} - V_{ik} \quad \forall k \in
 $$
       </p>
       <p>
-        A common assumption, leading to the Multinomial Logit (MNL) model, is that the random terms $\epsilon_{ij}$ are independently and identically distributed (IID) following a Gumbel distribution (meaning that the IIA assumption (Independence of Irrelevant Alternatives) holds). Under this assumption, the choice probability takes a convenient closed form:
+        A common assumption, leading to the Multinomial Logit (MNL) model, is that the random terms \(\epsilon_{ij}\) are independently and identically distributed (IID) following a Gumbel distribution (meaning that the IIA assumption (Independence of Irrelevant Alternatives) holds). Under this assumption, the choice probability takes a convenient closed form:
       </p>
       <p>
 $$
@@ -54,7 +54,7 @@ P_{ij} = \frac{e^{V_{ij}}}{\sum_{k \in C_i} e^{V_{ik}}}
 $$
       </p>
       <p>
-        <em>(This formula tells us that the probability of choosing location $j$ depends on its own systematic utility relative to the sum of exponentiated utilities of all possible choices, including staying put.)</em>
+        <em>(This formula tells us that the probability of choosing location \(j\) depends on its own systematic utility relative to the sum of exponentiated utilities of all possible choices, including staying put.)</em>
       </p>
     </section>
 
@@ -63,7 +63,7 @@ $$
     <section>
       <h2>2. Specifying Migration Utility and Aggregate Flows</h2>
       <p>
-        Let's apply this to migration. Consider the utility for an individual $i$ currently at origin $o$ choosing destination $j$. A common specification for the systematic utility $V_{ij}$ (or $V_{oj}$ when considering migration from $o$ to $j$) is:
+        Let's apply this to migration. Consider the utility for an individual \(i\) currently at origin \(o\) choosing destination \(j\). A common specification for the systematic utility \(V_{ij}\) (or \(V_{oj}\) when considering migration from \(o\) to \(j\)) is:
       </p>
       <p>
 $$
@@ -71,10 +71,10 @@ V_{oj} = \alpha_j - \beta c_{oj} \quad (+ \gamma' Z_i)
 $$
       </p>
       <p>
-        Here, $\alpha_j$ represents the intrinsic attractiveness of destination $j$ (e.g., wages, amenities), $c_{oj}$ is the cost of migrating from $o$ to $j$ (e.g., distance, cultural differences, with $c_{oo}=0$ for staying), and $\beta$ is a parameter reflecting sensitivity to cost. $Z_i$ could include individual characteristics, but we often focus on location attributes for aggregate models.
+        Here, \(\alpha_j\) represents the intrinsic attractiveness of destination \(j\) (e.g., wages, amenities), \(c_{oj}\) is the cost of migrating from \(o\) to \(j\) (e.g., distance, cultural differences, with \(c_{oo}=0\) for staying), and \(\beta\) is a parameter reflecting sensitivity to cost. \(Z_i\) could include individual characteristics, but we often focus on location attributes for aggregate models.
       </p>
       <p>
-        To move from individual probabilities to aggregate migration flows, $M_{oj}$, we multiply the number of potential migrants at the origin, $N_o$, by the average probability of choosing destination $j$, $\bar{P}_{oj}$.
+        To move from individual probabilities to aggregate migration flows, \(M_{oj}\), we multiply the number of potential migrants at the origin, \(N_o\), by the average probability of choosing destination \(j\), \(\bar{P}_{oj}\).
       </p>
       <p>
 $$
@@ -107,10 +107,10 @@ $$
         This equation strongly resembles the classic Gravity Model of migration:
       </p>
       <ul>
-          <li> $N_o$: Represents the "mass" or push factors of the origin.</li>
-          <li> $e^{\alpha_j}$: Represents the attractiveness or pull factors of the destination.</li>
-          <li> $e^{-\beta c_{oj}}$: Represents the inverse of the migration cost, often related to distance or friction between locations.</li>
-          <li> $\sum_{k \in C_o} e^{V_{ok}}$: This denominator term is crucial. It's often called the "Multilateral Resistance" or "Accessibility" term. It captures the influence of *all* possible destinations (including staying put) on the flow between a specific origin-destination pair. It normalizes the probability, ensuring that flows sum correctly.</li>
+          <li> \(N_o\): Represents the "mass" or push factors of the origin.</li>
+          <li> \(e^{\alpha_j}\): Represents the attractiveness or pull factors of the destination.</li>
+          <li> \(e^{-\beta c_{oj}}\): Represents the inverse of the migration cost, often related to distance or friction between locations.</li>
+          <li> \(\sum_{k \in C_o} e^{V_{ok}}\): This denominator term is crucial. It's often called the "Multilateral Resistance" or "Accessibility" term. It captures the influence of *all* possible destinations (including staying put) on the flow between a specific origin-destination pair. It normalizes the probability, ensuring that flows sum correctly.</li>
       </ul>
       <p>
         <em>(Thus, the RUM provides a behavioural micro-foundation for the empirically successful, but often ad-hoc, Gravity Model.)</em>
@@ -122,7 +122,7 @@ $$
     <section>
       <h2>4. Developing an Empirical Specification</h2>
       <p>
-        To estimate this model using data, we can work with the logarithm of the migration flow. Let $M_{odt}$ be the flow from origin $o$ to destination $d$ at time $t$. Taking the log of the RUM-derived flow expression gives (conceptually):
+        To estimate this model using data, we can work with the logarithm of the migration flow. Let \(M_{odt}\) be the flow from origin \(o\) to destination \(d\) at time \(t\). Taking the log of the RUM-derived flow expression gives (conceptually):
       </p>
       <p>
 $$
@@ -130,10 +130,10 @@ $$
 $$
       </p>
       <p>
-        Next, we model the components using observable variables and account for unobservables. Let $\mathbf{Z}_{ot}$ be origin characteristics (push factors), $\mathbf{X}_{dt}$ be destination characteristics (pull factors), and $C_{od}$ be the cost (e.g., distance) between $o$ and $d$.
+        Next, we model the components using observable variables and account for unobservables. Let \(\mathbf{Z}_{ot}\) be origin characteristics (push factors), \(\mathbf{X}_{dt}\) be destination characteristics (pull factors), and \(C_{od}\) be the cost (e.g., distance) between \(o\) and \(d\).
       </p>
       <p>
-        We can approximate the systematic utility $V_{odt}$ and the log origin size $\ln(N_{ot})$ as linear functions plus unobserved error terms ($u_{dt}$, $w_{ot}$):
+        We can approximate the systematic utility \(V_{odt}\) and the log origin size \(\ln(N_{ot})\) as linear functions plus unobserved error terms (\(u_{dt}\), \(w_{ot}\)):
       </p>
       <p>
 $$
@@ -144,7 +144,7 @@ V_{odt} &\approx \mathbf{X}_{dt}\boldsymbol{\beta}_X + \beta_c \ln(C_{od}) + u_{
 $$
       </p>
       <p>
-        <em>(Note: Cost $C_{od}$ is included in the utility term here, reflecting its impact on the destination's appeal from a specific origin.)</em>
+        <em>(Note: Cost \(C_{od}\) is included in the utility term here, reflecting its impact on the destination's appeal from a specific origin.)</em>
       </p>
       <p>
         Substituting these back into the log-flow equation gives:
@@ -155,7 +155,7 @@ $$
 $$
       </p>
       <p>
-        <em>(The challenge now is how to handle the combined unobserved factors, including the complex Multilateral Resistance term $IV_{ot}$.)</em>
+        <em>(The challenge now is how to handle the combined unobserved factors, including the complex Multilateral Resistance term \(IV_{ot}\).)</em>
       </p>
     </section>
 
@@ -167,9 +167,9 @@ $$
         A powerful way to handle time-invariant unobserved heterogeneity and the Multilateral Resistance term is by using fixed effects in a panel data setting.
       </p>
       <ul>
-        <li><strong>Origin Fixed Effects ($\gamma_o$):</strong> Absorb all time-invariant characteristics of the origin, including the time-invariant parts of $w_{ot}$ and, crucially, the main component of the Multilateral Resistance term $IV_{ot}$ which depends heavily on the origin's relative location and accessibility.</li>
-        <li><strong>Destination Fixed Effects ($\gamma_d$):</strong> Absorb all time-invariant characteristics of the destination, including the time-invariant parts of $u_{dt}$ (unobserved destination amenities/disamenities).</li>
-        <li><strong>Time Fixed Effects ($\gamma_t$):</strong> Absorb common shocks that affect all migration flows in a given year (e.g., national economic cycles, policy changes).</li>
+        <li><strong>Origin Fixed Effects (\(\gamma_o\)):</strong> Absorb all time-invariant characteristics of the origin, including the time-invariant parts of \(w_{ot}\) and, crucially, the main component of the Multilateral Resistance term \(IV_{ot}\) which depends heavily on the origin's relative location and accessibility.</li>
+        <li><strong>Destination Fixed Effects (\(\gamma_d\)):</strong> Absorb all time-invariant characteristics of the destination, including the time-invariant parts of \(u_{dt}\) (unobserved destination amenities/disamenities).</li>
+        <li><strong>Time Fixed Effects (\(\gamma_t\)):</strong> Absorb common shocks that affect all migration flows in a given year (e.g., national economic cycles, policy changes).</li>
       </ul>
       <p>
         Including these fixed effects leads to a widely used empirical gravity specification:
@@ -180,7 +180,7 @@ $$
 $$
       </p>
       <p>
-        Here, $\epsilon_{odt}$ is the remaining idiosyncratic error term. The coefficients $\boldsymbol{\beta}_Z$, $\boldsymbol{\beta}_X$, and $\beta_c$ capture the effects of time-varying origin/destination characteristics and bilateral costs, respectively, while controlling for unobserved heterogeneity via the fixed effects.
+        Here, \(\epsilon_{odt}\) is the remaining idiosyncratic error term. The coefficients \(\boldsymbol{\beta}_Z\), \(\boldsymbol{\beta}_X\), and \(\beta_c\) capture the effects of time-varying origin/destination characteristics and bilateral costs, respectively, while controlling for unobserved heterogeneity via the fixed effects.
                 <em>(This fixed-effects specification allows for robust estimation of the drivers of migration flows by purging estimates of biases from many unobserved confounding factors - or at least that's the idea.)</em>
       </p>
 
