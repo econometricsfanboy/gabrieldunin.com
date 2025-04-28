@@ -1,7 +1,7 @@
 <article>
     {% for item in site.data.listofposts %}
     <br>  
-    <div style="display: flex; align-items: center; background-color:rgb(223, 230, 232); margin-left: 10px; margin-right: 10px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; background-color:rgb(223, 230, 232); margin-left: 10px; margin-right: 10px;">
         <a href="{{ item.link }}" style="margin: 15px; padding: 20px;">
             {{ item.name }}
         </a>
