@@ -52,7 +52,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Gabriel Dunin-Borkowski. Webpage under construction. Last Updated: <?php echo date("Y-m-d", filemtime(__FILE__)); ?></p>
+    <p>&copy; 2025 Gabriel Dunin-Borkowski. Webpage under construction. Last Updated: {{ site.time | page.date: "%Y-%m-%d" }}</p>
   </footer>
 </body>
 </html>
