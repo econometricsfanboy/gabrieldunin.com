@@ -1,0 +1,7 @@
+<details class="code-toggle" markdown="block">
+  <summary>{{ include.title }}</summary>
+
+{% highlight {{ include.lang | default: 'text' }} %}
+{{ include.code }}
+{% endhighlight %}
+</details>
