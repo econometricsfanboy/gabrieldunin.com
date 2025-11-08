@@ -199,3 +199,7 @@ mjx-container[jax="CHTML"][display="true"] {
       border-radius: 4px;
       background: #f9f9f9;
     }
+
+details.code-toggle { border: 1px solid #ddd; border-radius: 6px; padding: .5rem .75rem; margin: 1rem 0; }
+details.code-toggle > summary { cursor: pointer; font-weight: 600; }
+details.code-toggle[open] { background: #fafafa; }
