@@ -28,7 +28,7 @@ kramdown:
   </p>
   <p>Plotting \(\mathrm{TPR}\) against \(\mathrm{FPR}\) as \(t\) sweeps gives the ROC curve. Its area is AUC.</p>
 
-  <details markdown="1">
+<details markdown="block">
   <summary><strong>Figure 1 — code</strong>: simulate two overlapping classes and show their score distributions</summary>
 
 ```python
@@ -100,7 +100,7 @@ x(t)=1-F_0(t),\ y(t)=1-F_1(t).
 \]
   </p>
 
-  <details markdown="1">
+<details markdown="block">
   <summary><strong>Figure 2 — code</strong>: visualize AUC as pairwise wins (positives vs negatives)</summary>
 
 ```python
@@ -144,7 +144,7 @@ plt.tight_layout(); plt.savefig("figures/pairwise_matrix.png", dpi=150); plt.clo
   </p>
   <p>Where the curve is steep, tiny relaxations of the threshold buy many true positives per false positive. This is the Neyman–Pearson lens, in geometry.</p>
 
-  <details markdown="1">
+<details markdown="block">
   <summary><strong>Figure 3 — code</strong>: empirical ROC and a numerical tangent (slope ≈ likelihood ratio)</summary>
 
 ```python
@@ -206,7 +206,7 @@ plt.savefig("figures/roc_curve.png", dpi=150); plt.close()
     <li><strong>Difference distribution:</strong> \(D=S_1-S_0\); then \(\mathrm{AUC}=\Pr(D>0)\).</li>
   </ol>
 
-  <details markdown="1">
+<details markdown="block">
   <summary><strong>Figure 4 — code</strong>: difference distribution; area right of 0 equals AUC</summary>
 
 ```python
@@ -245,9 +245,10 @@ plt.tight_layout(); plt.savefig("figures/difference_distribution.png", dpi=150);
   <ul>
     <li><strong>Empirical AUC is pair counting.</strong> With \(m\) positives and \(n\) negatives, average \(\mathbf{1}\{s_{1,i}>s_{0,j}\}\) over all \(mn\) cross‑pairs; give ties half‑credit. This is a \(U\)‑statistic; DeLong’s method provides a widely used nonparametric variance and a test for comparing curves (see references).</li>
     <li><strong>Prevalence‑free and rank‑only.</strong> Because AUC conditions on class and depends only on order, it’s stable against prior shifts and monotone re‑scalings of scores.</li>
-    <li><strong>Minimal code.</strong> A concise ROC/AUC implementation—no external ML libraries required:</li>
   </ul>
 
+<details markdown="block">
+  <summary><strong>Minimal code</strong>: A concise ROC/AUC implementation—no external ML libraries required.</summary>
 ```python
 # Minimal ROC/AUC from scores and labels
 # Usage: fpr, tpr, auc = roc_auc(y_true, y_score)
@@ -265,6 +266,7 @@ def roc_auc(y_true, y_score):
     auc = np.trapz(tpr, fpr)
     return fpr, tpr, auc
 ```
+</details>
 
   <p>If you want a library call, see scikit‑learn’s <i>roc_curve</i> and <i>roc_auc_score</i>.</p>
 </section>
