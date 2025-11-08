@@ -353,6 +353,7 @@ kramdown:
 <hr/>
 
 <!-- PROBLEMS -->
+<!-- PROBLEMS -->
 <section>
   <h2>7. Problem set</h2>
   <ol>
@@ -398,4 +399,59 @@ kramdown:
 
     <li><strong>AUC under covariate shift.</strong> If \(p(x\mid Y)\) changes but the conditional score distributions \(F_i\) induced by the model remain unchanged, argue why ROC/AUC stays invariant while PR/AUPRC can change. Give a small constructed example.</li>
   </ol>
+
+  <!-- SOLUTIONS DROPDOWN -->
+  <details>
+    <summary><strong>One‑line solutions (click to expand)</strong></summary>
+    <ol>
+      <li><strong>Stieltjes tie term.</strong> Ties get half‑credit because when sweeping a threshold past an atom, the Riemann–Stieltjes integral splits the jump evenly; equivalently, an infinitesimal random perturbation breaks any tie \(50\text{–}50\).</li>
+
+      <li><strong>Double‑integral equivalence.</strong> Since \(0\le \mathbf{1}\{s_1&gt;s_0\}\le 1\) and \(f_0,f_1\) are integrable densities, Tonelli applies; thus \(\iint \mathbf{1}\{s_1&gt;s_0\}f_1(s_1)f_0(s_0)\,ds_1ds_0=\Pr(S_1&gt;S_0)\).</li>
+
+      <li><strong>ROC concavity ⇔ MLR.</strong> Parameterize ROC by threshold \(t\). Then \(\dfrac{d\,\mathrm{TPR}(t)}{d\,\mathrm{FPR}(t)}=\dfrac{f_1(t)}{f_0(t)}\). If \(f_1/f_0\) increases in \(t\), the slope decreases as FPR increases, hence the ROC is concave; a non‑MLR pair (e.g., bimodal \(f_1\) crossing \(f_0\) twice) yields a convex bump.</li>
+
+      <li><strong>Bayes operating point.</strong> Choose \(t^\star\) where \(\dfrac{f_1(t^\star)}{f_0(t^\star)}=\dfrac{C_{10}(1-\pi)}{C_{01}\pi}\). For \(S_i\sim\mathcal{N}(\mu_i,\sigma^2)\),
+        \[
+        t^\star=\frac{\mu_0+\mu_1}{2}+\frac{\sigma^2}{\mu_1-\mu_0}\ln\!\frac{(1-\pi)C_{10}}{\pi C_{01}},
+        \]
+        and the ROC slope there equals the cost ratio.</li>
+
+      <li><strong>Binormal AUC.</strong> With independence \(D=S_1-S_0\sim\mathcal{N}(\mu_1-\mu_0,\sigma_1^2+\sigma_0^2)\), so \(\mathrm{AUC}=\Pr(D&gt;0)=\Phi\!\big((\mu_1-\mu_0)/\sqrt{\sigma_1^2+\sigma_0^2}\big)\).</li>
+
+      <li><strong>Strictly vs. non‑strict transforms.</strong> Any strictly increasing \(g\) preserves all pairwise orders (AUC invariant). A non‑strict map (rounding/clipping) converts a fraction \(p\) of wins into ties, reducing AUC by \(p/2\).</li>
+
+      <li><strong>Quantization penalty.</strong> With uniform bin width \(w\approx\text{range}/2^b\),
+        \[
+        \Delta\mathrm{AUC}\le \tfrac12\sum_k \Pr(S_1\in k)\Pr(S_0\in k)\approx \frac{w}{2}\int f_1(x)f_0(x)\,dx=O(2^{-b}),
+        \]
+        under mild smoothness.</li>
+
+      <li><strong>U‑statistic variance.</strong> Empirical AUC (with tie half‑credit) is an unbiased \((1,1)\) U‑statistic with asymptotic variance \(\operatorname{Var}(\psi_1(S_1))/m+\operatorname{Var}(\psi_0(S_0))/n\), where \(\psi_1(s)=\mathbb{E}[h(s,S_0)]\), \(\psi_0(s)=\mathbb{E}[h(S_1,s)]\).</li>
+
+      <li><strong>Symmetric label noise.</strong> Each pair is correct with prob.\((1-2\eta)\) and same‑label with prob.\(\eta\); hence \(\mathrm{AUC}_\text{obs}=(1-2\eta)\,\mathrm{AUC}_\text{true}+\eta\), i.e., linear shrinkage toward \(0.5\).</li>
+
+      <li><strong>Partial AUC.</strong> Let \(\mathcal{N}_\alpha\) be negatives in the top \(\alpha\) FPR slice. Then
+        \[
+        \mathrm{pAUC}_\alpha=\Pr(S_1&gt;S_0\mid S_0\in\mathcal{N}_\alpha)+\tfrac12\Pr(S_1=S_0\mid S_0\in\mathcal{N}_\alpha),
+        \]
+        with boundary ties fractionally included so the FPR mass is exactly \(\alpha\).</li>
+
+      <li><strong>Youden’s \(J\) vs. Bayes.</strong> \(J\) selects slope \(1\), whereas Bayes uses \(m=\frac{C_{10}(1-\pi)}{C_{01}\pi}\). Regret in expected cost:
+        \[
+        C_{01}\pi\,(\mathrm{TPR}^\star-\mathrm{TPR}_J)+C_{10}(1-\pi)\,(\mathrm{FPR}_J-\mathrm{FPR}^\star).
+        \]</li>
+
+      <li><strong>Same AUC, different calibration.</strong> Identical rankings \(\Rightarrow\) same AUC, yet Brier/ECE can differ markedly; AUC cannot decide between calibrated probabilities for fixed cost ratios.</li>
+
+      <li><strong>Mixtures & Simpson reversals.</strong> Overall \(\mathrm{AUC}=\sum_{g,g'} w_g w_{g'}\,\Pr(S_1^{(g)}&gt;S_0^{(g')})+\tfrac12\Pr(=)\). Changing subgroup weights \(w_g\) can reverse model ordering even if each subgroup prefers the opposite.</li>
+
+      <li><strong>ROC slope = LR (finite differences).</strong> Symmetric finite differences \(\Delta\mathrm{TPR}/\Delta\mathrm{FPR}\) around \(t\) converge to \(f_1(t)/f_0(t)\) as \(n\to\infty\); bias/variance inflate near boundaries where densities are small.</li>
+
+      <li><strong>Ranking surrogate calibration.</strong> Pairwise logistic loss is classification‑calibrated for AUC: there exists \(\psi\) with \(\psi(\text{AUC regret})\le \text{logistic regret}\); minimizing the surrogate drives misranking risk to zero.</li>
+
+      <li><strong>Class‑conditional monotone maps.</strong> Applying different strictly increasing \(g_1,g_0\) changes Jacobians and hence the likelihood ratio \(f_1/f_0\), altering pairwise orders; AUC can change.</li>
+
+      <li><strong>Covariate shift.</strong> If score marginals \(F_0,F_1\) are unchanged, ROC/AUC (conditioned on class) remain invariant, while PR/AUPRC shift with prevalence via \(\mathrm{Prec}=\frac{\pi\,\mathrm{TPR}}{\pi\,\mathrm{TPR}+(1-\pi)\,\mathrm{FPR}}\).</li>
+    </ol>
+  </details>
 </section>
