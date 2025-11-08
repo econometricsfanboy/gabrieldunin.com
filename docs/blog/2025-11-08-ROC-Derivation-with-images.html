@@ -353,104 +353,196 @@ kramdown:
 <hr/>
 
 <!-- PROBLEMS -->
+
 <section>
-  <h2>7. Problem set</h2>
+  <h2>Four orthogonal problems</h2>
   <ol>
-    <li><strong>Stieltjes tie term.</strong> Starting from \(\mathrm{AUC}=\int(1-F_1)\,dF_0\), derive \(\mathrm{AUC}=\Pr(S_1&gt;S_0)+\tfrac{1}{2}\Pr(S_1=S_0)\) without assuming densities. Your derivation must make explicit where the \(\tfrac{1}{2}\) factor comes from.</li>
-
-    <li><strong>Double-integral equivalence.</strong> Show \(\mathrm{AUC}=\iint \mathbf{1}\{s_1&gt;s_0\}f_1(s_1)f_0(s_0)\,ds_1ds_0\) and explain carefully why Fubini/Tonelli applies (what measurability/boundedness suffices here?).</li>
-
-    <li><strong>ROC concavity ⇔ monotone likelihood ratio.</strong> Prove that if \(f_1(t)/f_0(t)\) is increasing in \(t\) (MLR property), then the ROC is concave. Construct a counterexample (non-MLR) where the ROC has a convex segment.</li>
-
-    <li><strong>Bayes operating point from ROC geometry.</strong> For prevalence \(\pi\) and costs \(C_{10}\) (FP), \(C_{01}\) (FN), show that the Bayes-optimal threshold lies where the ROC’s tangent slope equals \(\frac{C_{10}(1-\pi)}{C_{01}\pi}\). Then, for \(S\mid Y=i\sim \mathcal{N}(\mu_i,\sigma^2)\), derive the closed-form threshold \(t^\star\) and verify that the slope there equals the cost ratio.</li>
-
-    <li><strong>Binormal AUC in one line.</strong> If \(S_1\sim\mathcal{N}(\mu_1,\sigma_1^2)\), \(S_0\sim\mathcal{N}(\mu_0,\sigma_0^2)\) independent, show \(\mathrm{AUC}=\Phi\!\left(\dfrac{\mu_1-\mu_0}{\sqrt{\sigma_1^2+\sigma_0^2}}\right)\). (Hint: consider \(D=S_1-S_0\).)</li>
-
-    <li><strong>Strictly increasing vs. non-strictly increasing transforms.</strong> Prove that any strictly increasing \(g\) leaves AUC invariant. Give an explicit non-strictly increasing \(g\) (e.g., clipping/quantization) that reduces AUC via ties, and quantify the reduction on a simple two-point score distribution.</li>
-
-    <li><strong>Quantization penalty.</strong> Suppose continuous scores are quantized to \(b\) bits (uniform bins). Provide an upper bound on the AUC drop due to ties as a function of \(b\) and the overlap of \(F_0, F_1\). (A tight big-O answer with clear assumptions earns full credit.)</li>
-
-    <li><strong>Pairwise/U-statistic variance.</strong> Treat empirical AUC as a U-statistic with kernel \(h(s_1,s_0)=\mathbf{1}\{s_1&gt;s_0\}+\tfrac{1}{2}\mathbf{1}\{s_1=s_0\}\). Show unbiasedness and derive its asymptotic variance in terms of \(\operatorname{Var}(\mathbb{E}[h\mid S_1])\) and \(\operatorname{Var}(\mathbb{E}[h\mid S_0])\). State regularity conditions.</li>
-
-    <li><strong>Symmetric label noise.</strong> Assume class-independent flip rate \(\eta\in[0,\tfrac12)\). Let \(\mathrm{AUC}_\text{true}\) be the population AUC and \(\mathrm{AUC}_\text{obs}\) the AUC measured against noisy labels. Show
+    <li><strong>Foundations (measure/Stieltjes): the tie term.</strong> Starting from
       \[
-      \mathrm{AUC}_\text{obs}=(1-2\eta)\,\mathrm{AUC}_\text{true}+\eta
+        \mathrm{AUC}=\int_{\mathbb{R}} (1-F_1)\,dF_0
       \]
-      (continuous-score case). Interpret the linear shrinkage toward \(0.5\).</li>
-
-    <li><strong>Partial AUC as a weighted probability.</strong> For normalized pAUC over \(\mathrm{FPR}\in[0,\alpha]\),
+      (Riemann–Stieltjes with the trapezoidal convention), prove
       \[
-      \mathrm{pAUC}_\alpha=\frac{1}{\alpha}\int_{0}^{\alpha}\mathrm{TPR}(x)\,dx,
+        \mathrm{AUC}=\Pr(S_1>S_0)+\tfrac{1}{2}\Pr(S_1=S_0)
       \]
-      derive a pairwise representation that samples negatives only from the top \(\alpha\) FPR slice (i.e., highest-scoring \(\alpha\) fraction of negatives) with appropriate normalization. State precisely how ties at the slice boundary are handled.</li>
+      without assuming densities, and make explicit where the \(\tfrac12\) comes from.</li>
 
-    <li><strong>Youden’s \(J\) vs cost-optimal.</strong> Show on a concrete family (e.g., equal-variance Gaussians) that the threshold maximizing \(J=\mathrm{TPR}-\mathrm{FPR}\) generally differs from the Bayes-optimal threshold unless \(C_{10}(1-\pi)=C_{01}\pi\). Quantify the regret in expected cost when using \(J\) instead of Bayes-optimal.</li>
+<li><strong>Geometry/decision theory: Bayes operating point from ROC slope.</strong>
+  With prevalence \(\pi\in(0,1)\) and costs \(C_{10}\) (FP), \(C_{01}\) (FN), show that the Bayes‑optimal threshold \(t^\star\) occurs where the ROC’s tangent slope equals
+  \[
+    m^\star=\frac{C_{10}(1-\pi)}{C_{01}\pi}.
+  \]
+  Then, for the equal‑variance binormal model \(S\mid Y=i\sim\mathcal{N}(\mu_i,\sigma^2)\), derive
+  \[
+    t^\star=\frac{\mu_0+\mu_1}{2}+\frac{\sigma^2}{\mu_1-\mu_0}\,\ln\!\frac{(1-\pi)C_{10}}{\pi C_{01}},
+  \]
+  and verify that the ROC slope at \(t^\star\) equals \(m^\star\).</li>
 
-    <li><strong>Same AUC, different calibration.</strong> Construct two scorers with identical AUC but different calibration curves. Verify equal AUC via the rank-based formula, and contrast Brier score / ECE. Explain why AUC cannot adjudicate between them for decision-making at fixed cost ratios.</li>
+<li><strong>Asymptotics/U‑statistics: variance of empirical AUC.</strong>
+  Let \(\widehat{\mathrm{AUC}}\) be the empirical AUC computed on \(m\) positives and \(n\) negatives using the kernel
+  \[
+  h(s_1,s_0)=\mathbf{1}\{s_1>s_0\}+\tfrac12\mathbf{1}\{s_1=s_0\}.
+  \]
+  Show unbiasedness and derive its asymptotic variance in terms of
+  \(\operatorname{Var}(\mathbb{E}[h\mid S_1])\) and \(\operatorname{Var}(\mathbb{E}[h\mid S_0])\).
+  State clear regularity conditions.</li>
 
-    <li><strong>Mixtures and Simpson-type reversals.</strong> Give subgroup-specific distributions \((F_0^{(g)},F_1^{(g)})\) with \(\mathrm{AUC}^{(1)}&gt;\mathrm{AUC}^{(2)}\) but overall \(\mathrm{AUC}\) reverses after mixing subgroups due to different subgroup weights. Prove the reversal algebraically.</li>
+<li><strong>Distribution shift: AUC invariance under covariate/prevalence shift; PR sensitivity.</strong>
+  Suppose the model’s conditional score laws \(F_0,F_1\) are unchanged across domains but the class prior changes from \(\pi\) to \(\pi'\) (\(\pi\neq\pi'\)). Prove that the ROC/AUC is invariant while precision–recall (and AUPRC) can change. Give a concrete numeric example at a fixed threshold to illustrate the magnitude of the precision change.</li>
 
-    <li><strong>ROC slope as likelihood ratio—finite-difference test.</strong> On simulated data, estimate the ROC slope at threshold \(t\) by symmetric finite differences. Independently estimate \(f_1(t)/f_0(t)\) by kernel density ratios. Show convergence of the two estimates as sample size grows and discuss boundary effects.</li>
 
-    <li><strong>Ranking surrogates and AUC.</strong> Consider pairwise logistic loss \(\ell(s_1,s_0)=\log\!\bigl(1+\exp(-(s_1-s_0))\bigr)\). Show that minimizing \(\mathbb{E}[\ell]\) is classification-calibrated for AUC (i.e., minimizes misranking risk in the limit). Provide the key inequality linking surrogate excess risk to AUC regret.</li>
-
-    <li><strong>Class-conditional monotone transforms.</strong> Show by counterexample that applying different strictly increasing transforms \(g_1,g_0\) to positives and negatives can change AUC, even though each \(g_i\) is monotone. Explain the mechanism in terms of LR reweighting.</li>
-
-    <li><strong>AUC under covariate shift.</strong> If \(p(x\mid Y)\) changes but the conditional score distributions \(F_i\) induced by the model remain unchanged, argue why ROC/AUC stays invariant while PR/AUPRC can change. Give a small constructed example.</li>
   </ol>
 
   <!-- SOLUTIONS DROPDOWN -->
+
   <details>
-    <summary><strong>One‑line solutions (click to expand)</strong></summary>
+    <summary><strong>Solutions (click to expand)</strong></summary>
     <ol>
-      <li><strong>Stieltjes tie term.</strong> Ties get half‑credit because when sweeping a threshold past an atom, the Riemann–Stieltjes integral splits the jump evenly; equivalently, an infinitesimal random perturbation breaks any tie \(50\text{–}50\).</li>
+      <li><strong>Foundations (measure/Stieltjes): the tie term.</strong>
+        <p><em>Goal.</em> From \(\displaystyle \mathrm{AUC}=\int (1-F_1)\,dF_0\) show
+        \(\mathrm{AUC}=\Pr(S_1>S_0)+\tfrac12\Pr(S_1=S_0)\).</p>
 
-      <li><strong>Double‑integral equivalence.</strong> Since \(0\le \mathbf{1}\{s_1&gt;s_0\}\le 1\) and \(f_0,f_1\) are integrable densities, Tonelli applies; thus \(\iint \mathbf{1}\{s_1&gt;s_0\}f_1(s_1)f_0(s_0)\,ds_1ds_0=\Pr(S_1&gt;S_0)\).</li>
+    <p><em>Step 1 (integration by parts with the trapezoidal convention).</em>
+    For càdlàg \(F_0,F_1\), Young’s (symmetric) Stieltjes integration by parts gives
+    \[
+      \int (1-F_1)\,dF_0-\int F_0\,dF_1
+      \;=\;
+      \underbrace{[(1\!-\!F_1)F_0]_{-\infty}^{+\infty}}_{=\,0}
+      \;-\;\tfrac12 \sum_{t\in\mathbb{R}} \Delta F_1(t)\,\Delta F_0(t),
+    \]
+    where \(\Delta F_i(t)=F_i(t)-F_i(t^-)=\Pr(S_i=t)\). Hence
+    \[
+      \int (1-F_1)\,dF_0 \;=\; \int F_0\,dF_1 \;-\;\tfrac12 \sum_t \Delta F_1(t)\,\Delta F_0(t).
+    \]</p>
 
-      <li><strong>ROC concavity ⇔ MLR.</strong> Parameterize ROC by threshold \(t\). Then \(\dfrac{d\,\mathrm{TPR}(t)}{d\,\mathrm{FPR}(t)}=\dfrac{f_1(t)}{f_0(t)}\). If \(f_1/f_0\) increases in \(t\), the slope decreases as FPR increases, hence the ROC is concave; a non‑MLR pair (e.g., bimodal \(f_1\) crossing \(f_0\) twice) yields a convex bump.</li>
+    <p><em>Step 2 (identify the two terms probabilistically).</em>
+    By the Lebesgue–Stieltjes identity,
+    \[
+      \int F_0\,dF_1=\mathbb{E}[F_0(S_1)]
+      =\mathbb{E}\big[\Pr(S_0\le S_1\mid S_1)\big]
+      =\Pr(S_0\le S_1)=\Pr(S_1\ge S_0).
+    \]
+    Independence of \(S_1\) and \(S_0\) gives
+    \(\sum_t \Delta F_1(t)\Delta F_0(t)=\Pr(S_1=S_0)\).
+    Therefore
+    \[
+      \int (1-F_1)\,dF_0
+      \;=\; \Pr(S_1\ge S_0)\;-\;\tfrac12\,\Pr(S_1=S_0)
+      \;=\; \Pr(S_1>S_0)+\tfrac12\,\Pr(S_1=S_0).
+    \]
+    <em>The factor \(\tfrac12\) is exactly the cross‑jump term coming from the trapezoidal (midpoint) Stieltjes convention; geometrically it is the area contributed by vertical steps of the ROC when both classes have an atom at the same score.</em></p>
+  </li>
 
-      <li><strong>Bayes operating point.</strong> Choose \(t^\star\) where \(\dfrac{f_1(t^\star)}{f_0(t^\star)}=\dfrac{C_{10}(1-\pi)}{C_{01}\pi}\). For \(S_i\sim\mathcal{N}(\mu_i,\sigma^2)\),
-        \[
-        t^\star=\frac{\mu_0+\mu_1}{2}+\frac{\sigma^2}{\mu_1-\mu_0}\ln\!\frac{(1-\pi)C_{10}}{\pi C_{01}},
-        \]
-        and the ROC slope there equals the cost ratio.</li>
+  <li><strong>Geometry/decision theory: Bayes operating point from ROC slope.</strong>
+    <p><em>Risk as a function of threshold.</em>
+    Predict \(1\) when \(S>t\). Expected cost
+    \[
+      R(t)=C_{01}\,\pi\,F_1(t)+C_{10}\,(1-\pi)\,[1-F_0(t)]
+      =C_{01}\pi\,\big(1-\mathrm{TPR}(t)\big)
+        +C_{10}(1-\pi)\,\mathrm{FPR}(t).
+    \]</p>
 
-      <li><strong>Binormal AUC.</strong> With independence \(D=S_1-S_0\sim\mathcal{N}(\mu_1-\mu_0,\sigma_1^2+\sigma_0^2)\), so \(\mathrm{AUC}=\Pr(D&gt;0)=\Phi\!\big((\mu_1-\mu_0)/\sqrt{\sigma_1^2+\sigma_0^2}\big)\).</li>
+    <p><em>First‑order condition.</em>
+    When densities exist at \(t\), \(R'(t)=C_{01}\pi\,f_1(t)-C_{10}(1-\pi)\,f_0(t)\).
+    Setting \(R'(t^\star)=0\) yields
+    \[
+      \frac{f_1(t^\star)}{f_0(t^\star)}=\frac{C_{10}(1-\pi)}{C_{01}\pi}\;=:\;m^\star.
+    \]
+    But the ROC parameterization by threshold gives
+    \(\dfrac{d\,\mathrm{TPR}(t)}{d\,\mathrm{FPR}(t)}
+     =\dfrac{-f_1(t)}{-f_0(t)}=\dfrac{f_1(t)}{f_0(t)}\).
+    Hence the Bayes point occurs where the ROC’s tangent slope equals \(m^\star\).</p>
 
-      <li><strong>Strictly vs. non‑strict transforms.</strong> Any strictly increasing \(g\) preserves all pairwise orders (AUC invariant). A non‑strict map (rounding/clipping) converts a fraction \(p\) of wins into ties, reducing AUC by \(p/2\).</li>
+    <p><em>Equal‑variance Gaussians.</em>
+    If \(S\mid Y=i\sim\mathcal{N}(\mu_i,\sigma^2)\),
+    \[
+      \log\frac{f_1(t)}{f_0(t)}
+      =\frac{\mu_1-\mu_0}{\sigma^2}\Big(t-\frac{\mu_0+\mu_1}{2}\Big).
+    \]
+    Solving \(\frac{f_1(t^\star)}{f_0(t^\star)}=m^\star\) gives
+    \[
+      t^\star=\frac{\mu_0+\mu_1}{2}+\frac{\sigma^2}{\mu_1-\mu_0}\,\ln m^\star
+      =\frac{\mu_0+\mu_1}{2}+\frac{\sigma^2}{\mu_1-\mu_0}\,
+        \ln\!\frac{(1-\pi)C_{10}}{\pi C_{01}}.
+    \]
+    Substituting \(t^\star\) back into \(f_1/f_0\) recovers \(m^\star\), verifying the slope condition at the optimum.</p>
+  </li>
 
-      <li><strong>Quantization penalty.</strong> With uniform bin width \(w\approx\text{range}/2^b\),
-        \[
-        \Delta\mathrm{AUC}\le \tfrac12\sum_k \Pr(S_1\in k)\Pr(S_0\in k)\approx \frac{w}{2}\int f_1(x)f_0(x)\,dx=O(2^{-b}),
-        \]
-        under mild smoothness.</li>
+  <li><strong>Asymptotics/U‑statistics: variance of empirical AUC.</strong>
+    <p><em>Estimator and unbiasedness.</em>
+    With \(\{S_{1i}\}_{i=1}^m\overset{\text{i.i.d.}}{\sim}F_1\),
+    \(\{S_{0j}\}_{j=1}^n\overset{\text{i.i.d.}}{\sim}F_0\), independent,
+    \[
+      \widehat{\mathrm{AUC}}
+      =\frac{1}{mn}\sum_{i=1}^m\sum_{j=1}^n h(S_{1i},S_{0j}),
+      \quad
+      h(s_1,s_0)=\mathbf{1}\{s_1>s_0\}+\tfrac12\mathbf{1}\{s_1=s_0\}.
+    \]
+    Then \(\mathbb{E}[\widehat{\mathrm{AUC}}]
+    =\mathbb{E}[h(S_1,S_0)]=\mathrm{AUC}\) by independence, so the estimator is unbiased.</p>
 
-      <li><strong>U‑statistic variance.</strong> Empirical AUC (with tie half‑credit) is an unbiased \((1,1)\) U‑statistic with asymptotic variance \(\operatorname{Var}(\psi_1(S_1))/m+\operatorname{Var}(\psi_0(S_0))/n\), where \(\psi_1(s)=\mathbb{E}[h(s,S_0)]\), \(\psi_0(s)=\mathbb{E}[h(S_1,s)]\).</li>
+    <p><em>Hoeffding decomposition.</em>
+    Define
+    \[
+      \psi_1(s):=\mathbb{E}[h(s,S_0)] 
+      =\Pr(S_0<s)+\tfrac12\Pr(S_0=s)
+      =F_0(s^-)+\tfrac12\Delta F_0(s),
+    \]
+    \[
+      \psi_0(s):=\mathbb{E}[h(S_1,s)]
+      =\Pr(S_1>s)+\tfrac12\Pr(S_1=s)
+      =1-F_1(s^-)-\tfrac12\Delta F_1(s).
+    \]
+    Let \(\theta=\mathrm{AUC}\).
+    The U‑statistic expansion is
+    \[
+      \widehat{\mathrm{AUC}}-\theta
+      =\frac{1}{m}\sum_{i=1}^m\big(\psi_1(S_{1i})-\theta\big)
+       +\frac{1}{n}\sum_{j=1}^n\big(\psi_0(S_{0j})-\theta\big)
+       +\text{degenerate remainder},
+    \]
+    where the remainder is \(o_p(m^{-1/2}+n^{-1/2})\).</p>
 
-      <li><strong>Symmetric label noise.</strong> Each pair is correct with prob.\((1-2\eta)\) and same‑label with prob.\(\eta\); hence \(\mathrm{AUC}_\text{obs}=(1-2\eta)\,\mathrm{AUC}_\text{true}+\eta\), i.e., linear shrinkage toward \(0.5\).</li>
+    <p><em>Asymptotic variance and CLT.</em>
+    With \(\sigma_1^2:=\operatorname{Var}(\psi_1(S_1))\),
+    \(\sigma_0^2:=\operatorname{Var}(\psi_0(S_0))\),
+    \[
+      \operatorname{Var}(\widehat{\mathrm{AUC}})
+      =\frac{\sigma_1^2}{m}+\frac{\sigma_0^2}{n}+o\!\Big(\frac{1}{m}+\frac{1}{n}\Big).
+    \]
+    If \(m,n\to\infty\) with \(m/(m+n)\to\lambda\in(0,1)\),
+    \[
+      \sqrt{\frac{mn}{m+n}}\big(\widehat{\mathrm{AUC}}-\theta\big)
+      \;\xrightarrow{d}\; \mathcal{N}\!\big(0,\,(1-\lambda)\sigma_1^2+\lambda\sigma_0^2\big).
+    \]</p>
 
-      <li><strong>Partial AUC.</strong> Let \(\mathcal{N}_\alpha\) be negatives in the top \(\alpha\) FPR slice. Then
-        \[
-        \mathrm{pAUC}_\alpha=\Pr(S_1&gt;S_0\mid S_0\in\mathcal{N}_\alpha)+\tfrac12\Pr(S_1=S_0\mid S_0\in\mathcal{N}_\alpha),
-        \]
-        with boundary ties fractionally included so the FPR mass is exactly \(\alpha\).</li>
+    <p><em>Regularity.</em>
+    i.i.d. within class and independence across classes; \(h\) bounded (here in \([0,1]\)), ensuring Lindeberg; \(\sigma_1^2+\sigma_0^2>0\) (i.e., non‑degenerate, excluding perfect separation).</p>
+  </li>
 
-      <li><strong>Youden’s \(J\) vs. Bayes.</strong> \(J\) selects slope \(1\), whereas Bayes uses \(m=\frac{C_{10}(1-\pi)}{C_{01}\pi}\). Regret in expected cost:
-        \[
-        C_{01}\pi\,(\mathrm{TPR}^\star-\mathrm{TPR}_J)+C_{10}(1-\pi)\,(\mathrm{FPR}_J-\mathrm{FPR}^\star).
-        \]</li>
+  <li><strong>Distribution shift: AUC invariance; PR sensitivity.</strong>
+    <p><em>Claim.</em> If the conditional score laws \(F_0,F_1\) are identical across domains, then the entire ROC and its area are invariant to changes in \(\pi\) or in the covariate distribution \(p(x)\) that leave \(F_i\) unchanged, while PR depends on \(\pi\).</p>
 
-      <li><strong>Same AUC, different calibration.</strong> Identical rankings \(\Rightarrow\) same AUC, yet Brier/ECE can differ markedly; AUC cannot decide between calibrated probabilities for fixed cost ratios.</li>
+    <p><em>Proof (ROC/AUC).</em>
+    For any threshold \(t\),
+    \(\mathrm{TPR}(t)=1-F_1(t)\) and \(\mathrm{FPR}(t)=1-F_0(t)\) depend only on \(F_1,F_0\), not on \(\pi\).
+    Therefore the parametric curve \(\{(\mathrm{FPR}(t),\mathrm{TPR}(t))\}_t\) and
+    \(\mathrm{AUC}=\int (1-F_1)\,dF_0\) are invariant.</p>
 
-      <li><strong>Mixtures & Simpson reversals.</strong> Overall \(\mathrm{AUC}=\sum_{g,g'} w_g w_{g'}\,\Pr(S_1^{(g)}&gt;S_0^{(g')})+\tfrac12\Pr(=)\). Changing subgroup weights \(w_g\) can reverse model ordering even if each subgroup prefers the opposite.</li>
+    <p><em>PR depends on \(\pi\).</em>
+    Precision at threshold \(t\) is
+    \[
+      \mathrm{Prec}(t)=\frac{\pi\,\mathrm{TPR}(t)}{\pi\,\mathrm{TPR}(t)+(1-\pi)\,\mathrm{FPR}(t)},
+    \]
+    so changing \(\pi\) alters \(\mathrm{Prec}(t)\) and hence AUPRC.</p>
 
-      <li><strong>ROC slope = LR (finite differences).</strong> Symmetric finite differences \(\Delta\mathrm{TPR}/\Delta\mathrm{FPR}\) around \(t\) converge to \(f_1(t)/f_0(t)\) as \(n\to\infty\); bias/variance inflate near boundaries where densities are small.</li>
+    <p><em>Numeric illustration.</em>
+    Fix \(\mathrm{TPR}=0.80\), \(\mathrm{FPR}=0.10\) at some \(t\).
+    If \(\pi=0.50\): \(\mathrm{Prec}=0.4/(0.4+0.05)=0.888\).
+    If \(\pi=0.10\): \(\mathrm{Prec}=0.08/(0.08+0.09)=0.471\).
+    The ROC point is identical; precision shifts dramatically with prevalence.</p>
+  </li>
+</ol>
 
-      <li><strong>Ranking surrogate calibration.</strong> Pairwise logistic loss is classification‑calibrated for AUC: there exists \(\psi\) with \(\psi(\text{AUC regret})\le \text{logistic regret}\); minimizing the surrogate drives misranking risk to zero.</li>
-
-      <li><strong>Class‑conditional monotone maps.</strong> Applying different strictly increasing \(g_1,g_0\) changes Jacobians and hence the likelihood ratio \(f_1/f_0\), altering pairwise orders; AUC can change.</li>
-
-      <li><strong>Covariate shift.</strong> If score marginals \(F_0,F_1\) are unchanged, ROC/AUC (conditioned on class) remain invariant, while PR/AUPRC shift with prevalence via \(\mathrm{Prec}=\frac{\pi\,\mathrm{TPR}}{\pi\,\mathrm{TPR}+(1-\pi)\,\mathrm{FPR}}\).</li>
-    </ol>
   </details>
 </section>
