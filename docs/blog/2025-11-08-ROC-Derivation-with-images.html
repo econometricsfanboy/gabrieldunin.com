@@ -100,14 +100,11 @@ x(t)=1-F_0(t),\ y(t)=1-F_1(t).
 \]
   </p>
 
-<details markdown="block">
-  <summary><strong>Figure 2 — code</strong>: visualize AUC as pairwise wins (positives vs negatives)</summary>
-
-```python
+{% capture fig2_code %}
 # Figure 2: Pairwise wins matrix; its mean ≈ AUC
-# Save as: figures/pairwise_matrix.png
+# Save as: assets/img/auc/pairwise_matrix.png
 import os, numpy as np, matplotlib.pyplot as plt
-os.makedirs("figures", exist_ok=True)
+os.makedirs("assets/img/auc", exist_ok=True)
 
 rng = np.random.default_rng(0)
 neg = np.sort(rng.normal(0.0, 1.0, 250))
@@ -119,15 +116,19 @@ plt.imshow(M, aspect="auto", origin="lower", interpolation="nearest")
 plt.colorbar(label="1 if S_pos > S_neg else 0")
 plt.xlabel("Negative samples (sorted)"); plt.ylabel("Positive samples (sorted)")
 plt.title(f"Pairwise wins; mean = {M.mean():.3f} ≈ AUC")
-plt.tight_layout(); plt.savefig("figures/pairwise_matrix.png", dpi=150); plt.close()
-```
+plt.tight_layout(); plt.savefig("assets/img/auc/pairwise_matrix.png", dpi=150); plt.close()
+{% endcapture %}
 
-  </details>
+{% include collapse.html
+   title="Figure 2 — code: visualize AUC as pairwise wins (positives vs negatives)"
+   lang="python"
+   code=fig2_code %}
 
-    {% include figure.html
+{% include figure.html
    src="/assets/img/auc/pairwise_matrix.png"
-   alt="Pairwise score densities"
+   alt="Pairwise wins matrix"
    caption="Figure 2 — AUC as pairwise wins (negatives vs positives)" %}
+
 </section>
 
 <hr/>
