@@ -1,3 +1,6 @@
+- name: ROC & AUC (yet again (with images!))
+  link: blog/2025-11-08-ROC-Derivation-with-images.html
+  date: Nov 8, 2025
 - name: Random Utility Model
   link: blog/2025-04-27-Random-Utility-Maximization.html
   date: April 28, 2025
