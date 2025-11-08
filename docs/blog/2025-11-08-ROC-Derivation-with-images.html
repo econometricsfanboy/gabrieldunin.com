@@ -145,14 +145,11 @@ plt.tight_layout(); plt.savefig("assets/img/auc/pairwise_matrix.png", dpi=150); 
   </p>
   <p>Where the curve is steep, tiny relaxations of the threshold buy many true positives per false positive. This is the Neyman–Pearson lens, in geometry.</p>
 
-<details markdown="block">
-  <summary><strong>Figure 3 — code</strong>: empirical ROC and a numerical tangent (slope ≈ likelihood ratio)</summary>
-
-```python
+{% capture fig3_code %}
 # Figure 3: Empirical ROC with a local tangent
-# Save as: figures/roc_curve.png
+# Save as: assets/img/auc/roc_curve.png
 import os, numpy as np, matplotlib.pyplot as plt
-os.makedirs("figures", exist_ok=True)
+os.makedirs("assets/img/auc", exist_ok=True)
 
 rng = np.random.default_rng(1)
 neg = rng.normal(0.0, 1.0, 4000); pos = rng.normal(1.25, 1.0, 4000)
@@ -184,15 +181,19 @@ plt.xlim(0, 1); plt.ylim(0, 1)
 plt.xlabel("False Positive Rate"); plt.ylabel("True Positive Rate")
 plt.title("ROC and local slope (likelihood ratio)")
 plt.legend(); plt.tight_layout()
-plt.savefig("figures/roc_curve.png", dpi=150); plt.close()
-```
+plt.savefig("assets/img/auc/roc_curve.png", dpi=150); plt.close()
+{% endcapture %}
 
-  </details>
+{% include collapse.html
+   title="Figure 3 — code: empirical ROC and a numerical tangent (slope ≈ likelihood ratio)"
+   lang="python"
+   code=fig3_code %}
 
-    {% include figure.html
-   src="/assets/img/auc/roc_curve"
-   alt="Slope is likelihood ratio"
-   caption="Figure 3 — a bayesian corollary (slope vs likelihood ratio)" %}
+{% include figure.html
+   src="/assets/img/auc/roc_curve.png"
+   alt="ROC with local tangent; slope approximates likelihood ratio"
+   caption="Figure 3 — ROC and local slope (likelihood ratio)" %}
+  
 </section>
 
 <hr/>
@@ -207,14 +208,11 @@ plt.savefig("figures/roc_curve.png", dpi=150); plt.close()
     <li><strong>Difference distribution:</strong> \(D=S_1-S_0\); then \(\mathrm{AUC}=\Pr(D>0)\).</li>
   </ol>
 
-<details markdown="block">
-  <summary><strong>Figure 4 — code</strong>: difference distribution; area right of 0 equals AUC</summary>
-
-```python
+{% capture fig4_code %}
 # Figure 4: Distribution of differences D = S_pos - S_neg
-# Save as: figures/difference_distribution.png
+# Save as: assets/img/auc/difference_distribution.png
 import os, numpy as np, matplotlib.pyplot as plt
-os.makedirs("figures", exist_ok=True)
+os.makedirs("assets/img/auc", exist_ok=True)
 
 rng = np.random.default_rng(7)
 neg = rng.normal(0.0, 1.0, 10000)
@@ -226,15 +224,19 @@ plt.hist(d, bins=80, density=True)
 plt.axvline(0.0, linestyle="--")
 plt.xlabel("D = S_pos - S_neg"); plt.ylabel("Density")
 plt.title(f"P(D>0) ≈ {np.mean(d>0):.3f} ≈ AUC")
-plt.tight_layout(); plt.savefig("figures/difference_distribution.png", dpi=150); plt.close()
-```
+plt.tight_layout(); plt.savefig("assets/img/auc/difference_distribution.png", dpi=150); plt.close()
+{% endcapture %}
 
-  </details>
+{% include collapse.html
+   title="Figure 4 — code: difference distribution; area right of 0 equals AUC"
+   lang="python"
+   code=fig4_code %}
 
-    {% include figure.html
+{% include figure.html
    src="/assets/img/auc/difference_distribution.png"
-   alt="Are to the right of zero"
-   caption="Figure 4 — score distributions (negatives vs positives)" %}
+   alt="Distribution of D = S_pos − S_neg; area right of zero is AUC"
+   caption="Figure 4 — D = S_pos − S_neg; P(D>0) equals AUC" %}
+
 </section>
 
 <hr/>
@@ -248,9 +250,7 @@ plt.tight_layout(); plt.savefig("figures/difference_distribution.png", dpi=150);
     <li><strong>Prevalence‑free and rank‑only.</strong> Because AUC conditions on class and depends only on order, it’s stable against prior shifts and monotone re‑scalings of scores.</li>
   </ul>
 
-<details markdown="block">
-  <summary><strong>Minimal code</strong>: A concise ROC/AUC implementation—no external ML libraries required.</summary>
-```python
+{% capture minimal_auc_code %}
 # Minimal ROC/AUC from scores and labels
 # Usage: fpr, tpr, auc = roc_auc(y_true, y_score)
 import numpy as np
@@ -266,8 +266,12 @@ def roc_auc(y_true, y_score):
     fpr = np.concatenate(([0.0], fps / N, [1.0]))
     auc = np.trapz(tpr, fpr)
     return fpr, tpr, auc
-```
-</details>
+{% endcapture %}
+
+{% include collapse.html
+   title="Minimal ROC/AUC — code"
+   lang="python"
+   code=minimal_auc_code %}
 
   <p>If you want a library call, see scikit‑learn’s <i>roc_curve</i> and <i>roc_auc_score</i>.</p>
 </section>
