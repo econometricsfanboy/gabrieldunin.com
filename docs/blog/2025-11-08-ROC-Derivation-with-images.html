@@ -11,13 +11,13 @@ kramdown:
 
 <!-- ABSTRACT -->
 <section markdown="1">
-**Picture.** A scoring model assigns each case a real‑valued score \(S\). For binary targets (negative \(0\), positive \(1\)), imagine drawing one truly positive and one truly negative at random and asking whether the model ranks the positive higher. The probability of that event is the area under the ROC curve (AUC). This post motivates the statement, derives it cleanly (including ties), and provides Python to generate figures that make the idea tangible.
+<strong>Picture.</strong> A scoring model assigns each case a real‑valued score \(S\). For binary targets (negative \(0\), positive \(1\)), imagine drawing one truly positive and one truly negative at random and asking whether the model ranks the positive higher. The probability of that event is the area under the ROC curve (AUC). This post motivates the statement, derives it cleanly (including ties), and provides Python to generate figures that make the idea tangible.
 </section>
 
 <hr/>
 
 <!-- MOTIVATION -->
-<section markdown="1">
+<section markdown="block">
 ## 1. Motivation: a threshold sweeping along a line
 Scores live on a line. Let \(F_0\) and \(F_1\) denote the class‑conditional CDFs of \(S\) under negatives and positives; \(f_0\), \(f_1\) are their densities where they exist. Sweep a threshold \(t\) from \(+\infty\) to \(-\infty\), predicting “positive” when \(S>t\). The false‑positive and true‑positive rates are
 \[
