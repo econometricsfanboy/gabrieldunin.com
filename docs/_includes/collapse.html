@@ -1,7 +1,10 @@
-<details class="code-toggle" markdown="block">
+<details class="code-toggle">
   <summary>{{ include.title }}</summary>
-
-{% highlight {{ include.lang | default: 'text' }} %}
+  {% assign lang = include.lang | default: 'text' %}
+  {% capture _md %}
+```{{ lang }}
 {{ include.code }}
-{% endhighlight %}
+```
+{% endcapture %}
+{{ _md | markdownify }}
 </details>
