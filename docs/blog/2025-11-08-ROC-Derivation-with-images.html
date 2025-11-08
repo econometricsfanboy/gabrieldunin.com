@@ -28,14 +28,11 @@ kramdown:
   </p>
   <p>Plotting \(\mathrm{TPR}\) against \(\mathrm{FPR}\) as \(t\) sweeps gives the ROC curve. Its area is AUC.</p>
 
-<details markdown="block">
-  <summary><strong>Figure 1 — code</strong>: simulate two overlapping classes and show their score distributions</summary>
-
-```python
+{% capture fig1_code %}
 # Figure 1: Score distributions (negatives vs positives)
-# Save as: figures/distributions.png
+# Save as: assets/img/auc/distributions.png
 import os, numpy as np, matplotlib.pyplot as plt
-os.makedirs("figures", exist_ok=True)
+os.makedirs("assets/img/auc", exist_ok=True)
 
 rng = np.random.default_rng(42)
 neg = rng.normal(0.0, 1.0, 4000)
@@ -50,12 +47,15 @@ plt.hist(pos, bins=bins, alpha=0.6, density=True, label="Positive")
 plt.xlabel("Score S"); plt.ylabel("Density")
 plt.title("Score distributions")
 plt.legend(); plt.tight_layout()
-plt.savefig("figures/distributions.png", dpi=150); plt.close()
-````
+plt.savefig("assets/img/auc/distributions.png", dpi=150); plt.close()
+{% endcapture %}
 
-  </details>
+{% include collapse.html
+   title="Figure 1 — code: simulate two overlapping classes and show score distributions"
+   lang="python"
+   code=fig1_code %}
 
-  {% include figure.html
+{% include figure.html
    src="/assets/img/auc/distributions.png"
    alt="Class-conditional score densities"
    caption="Figure 1 — score distributions (negatives vs positives)" %}
