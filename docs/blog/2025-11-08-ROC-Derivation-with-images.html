@@ -9,7 +9,7 @@ excerpt: "The crux: AUC is the probability that a random positive outranks a ran
 
 <!-- ABSTRACT -->
 <section>
-  <p><strong>Abstract.</strong> Pick one truly positive case and one truly negative at random; ask whether your model ranks the positive higher. The probability of that event is the area under the ROC curve (AUC). This post motivates the statement, derives it in a few lines, and provides Python to generate figures that make the idea tangible.</p>
+  <p><strong>Picture.</strong> In a way, we can understand a classifier (or model) as a machine which sorts apples from oranges. It is true that we're usually interested in the more general case of sorting 'all fruits', but it is also true that even a very general predictive model can either succeed or fail, and in that sense, every model is at some point sorting apples from oranges. Let's say that we like apples and hate oranges. We're given a black box the content of which is unknown. The person who gave it to us loves us and doesn't want us to suffer, so we assume that it's an apple. The model - the idea that if they love us they will not give us apples - is a sentence which can be true or false. Measuring the extent to which it can be true or false is, in essence, the idea behind the Receiver Operating Curve and it's sister, the Area under the Curve. More generally: Pick one truly positive case (a 'suspected' apple which turns out to be an actual apple) and one truly negative at random; ask whether your model ranks the positive higher. The probability of that event is the area under the ROC curve (AUC). This post motivates the statement, derives it in a few lines, and provides Python to generate figures that make the idea tangible.</p>
 </section>
 
 <hr/>
