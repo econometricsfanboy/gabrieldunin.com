@@ -1,0 +1,302 @@
+---
+layout: blog
+title: "AUC: the probability view (with derivation and figures)"
+mathjax: true
+date: 2025-11-08
+tags: [roc, auc, probability, visualization, python, machine-learning]
+excerpt: "The crux: AUC is the probability that a random positive outranks a random negative. Everything else—ROC geometry, likelihood‑ratio slopes, invariances—falls out of that."
+---
+
+<!-- ABSTRACT -->
+<section>
+  <p><strong>Abstract.</strong> Pick one truly positive case and one truly negative at random; ask whether your model ranks the positive higher. The probability of that event is the area under the ROC curve (AUC). This post motivates the statement, derives it in a few lines, and provides Python to generate figures that make the idea tangible.</p>
+</section>
+
+<hr/>
+
+<!-- MOTIVATION -->
+<section>
+  <h2>1. Motivation: a gate through fog</h2>
+  <p>Scores live on a line. Negatives follow a distribution with CDF \(F_0\), positives \(F_1\). Move a threshold \(t\) from right to left; call everything to the right “positive.” At each location, the false‑positive and true‑positive rates are</p>
+  <p>
+\[
+\mathrm{FPR}(t)=\Pr(S>t\mid 0)=1-F_0(t),\qquad
+\mathrm{TPR}(t)=\Pr(S>t\mid 1)=1-F_1(t).
+\]
+  </p>
+  <p>Plotting \(\mathrm{TPR}\) against \(\mathrm{FPR}\) as \(t\) sweeps gives the ROC curve. Its area is AUC.</p>
+
+  <details markdown="1">
+  <summary><strong>Figure 1 — code</strong>: simulate two overlapping classes and show their score distributions</summary>
+
+```python
+# Figure 1: Score distributions (negatives vs positives)
+# Save as: figures/distributions.png
+import os, numpy as np, matplotlib.pyplot as plt
+os.makedirs("figures", exist_ok=True)
+
+rng = np.random.default_rng(42)
+neg = rng.normal(0.0, 1.0, 4000)
+pos = rng.normal(1.25, 1.0, 4000)
+
+bins = np.linspace(min(neg.min(), pos.min()) - 0.5,
+                   max(neg.max(), pos.max()) + 0.5, 60)
+
+plt.figure(figsize=(7, 4.5))
+plt.hist(neg, bins=bins, alpha=0.6, density=True, label="Negative")
+plt.hist(pos, bins=bins, alpha=0.6, density=True, label="Positive")
+plt.xlabel("Score S"); plt.ylabel("Density")
+plt.title("Score distributions")
+plt.legend(); plt.tight_layout()
+plt.savefig("figures/distributions.png", dpi=150); plt.close()
+````
+
+  </details>
+
+  {% include figure.html
+   src="/assets/img/auc/distributions.png"
+   alt="Class-conditional score densities"
+   caption="Figure 1 — score distributions (negatives vs positives)" %}
+
+</section>
+
+<hr/>
+
+<!-- THE CRUX -->
+
+<section>
+  <h2>2. The crux in one sentence</h2>
+  <p><strong>AUC equals the probability that a randomly chosen positive receives a higher score than a randomly chosen negative.</strong> Formally, with independent scores \(S_1\sim f_1\) (positive) and \(S_0\sim f_0\) (negative):</p>
+  <p>
+\[
+\boxed{\ \mathrm{AUC}=\Pr(S_1>S_0)\ } \quad 
+\text{(with ties counted as }+\tfrac{1}{2}\Pr(S_1=S_0)\text{).}
+\]
+  </p>
+  <p>This is the Wilcoxon–Mann–Whitney view of AUC and explains its invariances: AUC measures <em>ranking</em>, not calibration.</p>
+</section>
+
+<hr/>
+
+<!-- DERIVATION -->
+
+<section>
+  <h2>3. The derivation, start to finish</h2>
+  <p>Begin with the geometric definition of area under the ROC:</p>
+  <p>
+\[
+\mathrm{AUC}=\int_{0}^{1} y(x)\,dx,\quad
+x(t)=1-F_0(t),\ y(t)=1-F_1(t).
+\]
+  </p>
+  <p>Parameterize by the threshold. Since \(dx/dt=-f_0(t)\):</p>
+  <p>
+\[
+\mathrm{AUC}=\int_{-\infty}^{+\infty}\!\big[1-F_1(t)\big]\,f_0(t)\,dt
+=\mathbb{E}_{S_0\sim f_0}\big[1-F_1(S_0)\big]
+=\Pr(S_1>S_0).
+\]
+  </p>
+
+  <details markdown="1">
+  <summary><strong>Figure 2 — code</strong>: visualize AUC as pairwise wins (positives vs negatives)</summary>
+
+```python
+# Figure 2: Pairwise wins matrix; its mean ≈ AUC
+# Save as: figures/pairwise_matrix.png
+import os, numpy as np, matplotlib.pyplot as plt
+os.makedirs("figures", exist_ok=True)
+
+rng = np.random.default_rng(0)
+neg = np.sort(rng.normal(0.0, 1.0, 250))
+pos = np.sort(rng.normal(1.25, 1.0, 250))
+M = (pos[:, None] > neg[None, :]).astype(float)
+
+plt.figure(figsize=(6, 6))
+plt.imshow(M, aspect="auto", origin="lower", interpolation="nearest")
+plt.colorbar(label="1 if S_pos > S_neg else 0")
+plt.xlabel("Negative samples (sorted)"); plt.ylabel("Positive samples (sorted)")
+plt.title(f"Pairwise wins; mean = {M.mean():.3f} ≈ AUC")
+plt.tight_layout(); plt.savefig("figures/pairwise_matrix.png", dpi=150); plt.close()
+```
+
+  </details>
+
+    {% include figure.html
+   src="/assets/img/auc/pairwise_matrix.png"
+   alt="Pairwise score densities"
+   caption="Figure 2 — AUC as pairwise wins (negatives vs positives)" %}
+</section>
+
+<hr/>
+
+<!-- READING THE ROC -->
+
+<section>
+  <h2>4. Reading the ROC like a map</h2>
+  <p>Differentiating the parametric form gives \(dx/dt=-f_0(t)\) and \(dy/dt=-f_1(t)\), so the instantaneous slope of the ROC is the <em>likelihood ratio</em> at threshold \(t\):</p>
+  <p>
+\[
+\frac{dy}{dx}=\frac{f_1(t)}{f_0(t)}.
+\]
+  </p>
+  <p>Where the curve is steep, tiny relaxations of the threshold buy many true positives per false positive. This is the Neyman–Pearson lens, in geometry.</p>
+
+  <details markdown="1">
+  <summary><strong>Figure 3 — code</strong>: empirical ROC and a numerical tangent (slope ≈ likelihood ratio)</summary>
+
+```python
+# Figure 3: Empirical ROC with a local tangent
+# Save as: figures/roc_curve.png
+import os, numpy as np, matplotlib.pyplot as plt
+os.makedirs("figures", exist_ok=True)
+
+rng = np.random.default_rng(1)
+neg = rng.normal(0.0, 1.0, 4000); pos = rng.normal(1.25, 1.0, 4000)
+scores = np.concatenate([neg, pos])
+ytrue  = np.concatenate([np.zeros_like(neg, dtype=int), np.ones_like(pos, dtype=int)])
+
+# Minimal ROC from scratch
+order = np.argsort(-scores, kind="mergesort")
+y = ytrue[order]
+P = y.sum(); N = len(y) - P
+tps = np.cumsum(y); fps = np.cumsum(1 - y)
+tpr = np.concatenate(([0.0], tps / P, [1.0]))
+fpr = np.concatenate(([0.0], fps / N, [1.0]))
+
+# Pick a point near FPR≈0.2 and estimate slope numerically
+idx = np.argmin(np.abs(fpr - 0.2))
+x0, y0 = fpr[idx], tpr[idx]
+i1 = max(1, idx - 3); i2 = min(len(fpr) - 2, idx + 3)
+slope = (tpr[i2] - tpr[i1]) / (fpr[i2] - fpr[i1])
+
+# Plot
+plt.figure(figsize=(6, 6))
+plt.plot(fpr, tpr, lw=2, label="ROC")
+plt.plot([0, 1], [0, 1], "--", lw=1, label="Chance")
+x = np.array([x0 - 0.15, x0 + 0.15]); yline = y0 + slope * (x - x0)
+plt.plot(x, yline, lw=1, label=f"Tangent slope ≈ {slope:.2f}")
+plt.scatter([x0], [y0], s=30)
+plt.xlim(0, 1); plt.ylim(0, 1)
+plt.xlabel("False Positive Rate"); plt.ylabel("True Positive Rate")
+plt.title("ROC and local slope (likelihood ratio)")
+plt.legend(); plt.tight_layout()
+plt.savefig("figures/roc_curve.png", dpi=150); plt.close()
+```
+
+  </details>
+
+    {% include figure.html
+   src="/assets/img/auc/roc_curve"
+   alt="Slope is likelihood ratio"
+   caption="Figure 3 — a bayesian corollary (slope vs likelihood ratio)" %}
+</section>
+
+<hr/>
+
+<!-- THREE PICTURES -->
+
+<section>
+  <h2>5. Three equivalent pictures of AUC</h2>
+  <ol>
+    <li><strong>Integral under tradeoff:</strong> \(\displaystyle \mathrm{AUC}=\int_0^1 y(x)\,dx\).</li>
+    <li><strong>Pairwise probability:</strong> \(\mathrm{AUC}=\Pr(S_1>S_0)\) (with ties as half‑wins).</li>
+    <li><strong>Difference distribution:</strong> \(D=S_1-S_0\); then \(\mathrm{AUC}=\Pr(D>0)\).</li>
+  </ol>
+
+  <details markdown="1">
+  <summary><strong>Figure 4 — code</strong>: difference distribution; area right of 0 equals AUC</summary>
+
+```python
+# Figure 4: Distribution of differences D = S_pos - S_neg
+# Save as: figures/difference_distribution.png
+import os, numpy as np, matplotlib.pyplot as plt
+os.makedirs("figures", exist_ok=True)
+
+rng = np.random.default_rng(7)
+neg = rng.normal(0.0, 1.0, 10000)
+pos = rng.normal(1.25, 1.0, 10000)
+d = rng.choice(pos, 20000) - rng.choice(neg, 20000)
+
+plt.figure(figsize=(7, 4.5))
+plt.hist(d, bins=80, density=True)
+plt.axvline(0.0, linestyle="--")
+plt.xlabel("D = S_pos - S_neg"); plt.ylabel("Density")
+plt.title(f"P(D>0) ≈ {np.mean(d>0):.3f} ≈ AUC")
+plt.tight_layout(); plt.savefig("figures/difference_distribution.png", dpi=150); plt.close()
+```
+
+  </details>
+
+    {% include figure.html
+   src="/assets/img/auc/difference_distribution.png"
+   alt="Are to the right of zero"
+   caption="Figure 4 — score distributions (negatives vs positives)" %}
+</section>
+
+<hr/>
+
+<!-- PRACTICALITIES -->
+
+<section>
+  <h2>6. Practicalities in one place</h2>
+  <ul>
+    <li><strong>Empirical AUC is pair counting.</strong> With \(m\) positives and \(n\) negatives, average \(\mathbf{1}\{s_{1,i}>s_{0,j}\}\) over all \(mn\) cross‑pairs; give ties half‑credit. This is a \(U\)‑statistic; DeLong’s method provides a widely used nonparametric variance and a test for comparing curves (see references).</li>
+    <li><strong>Prevalence‑free and rank‑only.</strong> Because AUC conditions on class and depends only on order, it’s stable against prior shifts and monotone re‑scalings of scores.</li>
+    <li><strong>Minimal code.</strong> A concise ROC/AUC implementation—no external ML libraries required:</li>
+  </ul>
+
+```python
+# Minimal ROC/AUC from scores and labels
+# Usage: fpr, tpr, auc = roc_auc(y_true, y_score)
+import numpy as np
+
+def roc_auc(y_true, y_score):
+    y_true = np.asarray(y_true).astype(int)
+    y_score = np.asarray(y_score).astype(float)
+    order = np.argsort(-y_score, kind="mergesort")
+    y = y_true[order]
+    P = y.sum(); N = len(y) - P
+    tps = np.cumsum(y); fps = np.cumsum(1 - y)
+    tpr = np.concatenate(([0.0], tps / P, [1.0]))
+    fpr = np.concatenate(([0.0], fps / N, [1.0]))
+    auc = np.trapz(tpr, fpr)
+    return fpr, tpr, auc
+```
+
+  <p>If you want a library call, see scikit‑learn’s <i>roc_curve</i> and <i>roc_auc_score</i>.</p>
+</section>
+
+<hr/>
+
+<!-- NOT UNPACKING TODAY -->
+
+<section>
+  <h2>7. Not unpacked today (each merits its own post)</h2>
+  <ul>
+    <li><strong>Partial AUC</strong> for low‑FPR screening regimes.</li>
+    <li><strong>ROC convex hulls</strong> and their link to likelihood‑ratio tests.</li>
+    <li><strong>Precision–Recall vs ROC</strong> under severe imbalance.</li>
+    <li><strong>Variance & inference for AUC</strong> (DeLong and bootstraps).</li>
+    <li><strong>Quantile form</strong> \(y(x)=1-F_1(F_0^{-1}(1-x))\) and order‑statistic viewpoints.</li>
+    <li><strong>Calibration vs discrimination</strong>: pairing AUC with proper scoring rules.</li>
+    <li><strong>Gini</strong> in credit scoring: \(\mathrm{Gini}=2\,\mathrm{AUC}-1\).</li>
+  </ul>
+</section>
+
+<hr/>
+
+<!-- NOTES & REFERENCES (curated links for further reading) -->
+
+<section>
+  <h2>8. Notes & references</h2>
+  <ul>
+    <li>ROC overview and AUC‑as‑probability (includes derivation): <a href="https://www.google.com/search?q=Receiver+operating+characteristic+site%3Awikipedia.org">site:wikipedia.org</a></li>
+    <li>Wilcoxon–Mann–Whitney connection to AUC: <a href="https://www.google.com/search?q=Mann%E2%80%93Whitney+U+test+site%3Awikipedia.org">site:wikipedia.org</a></li>
+    <li>The ROC’s tangent slope equals the likelihood ratio at the corresponding threshold: <a href="https://pubmed.ncbi.nlm.nih.gov/9850136/">Choi (1998)</a></li>
+    <li>Precision–Recall vs ROC under imbalance should be interpreted with care; see Saito & Rehsmeier: <a href="https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0118432">Saito &amp; Rehmsmeier (2015)</a></li>
+    <li>Variance/CI for AUC and comparing ROCs: <a href="https://www.google.com/search?q=Comparing+the+areas+under+two+or+more+correlated+ROC+curves+DeLong+1988+site%3Apubmed.ncbi.nlm.nih.gov">DeLong et&nbsp;al. (1988)</a></li>
+    <li>The Gini rescale, (2\mathrm{AUC}-1), is widely used in credit scoring: <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristi">site:wikipedia.org</a></li>
+  </ul>
+</section>
+```
