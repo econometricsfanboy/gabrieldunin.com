@@ -18,8 +18,8 @@ kramdown:
 
 <!-- MOTIVATION -->
 <section>
-  <h2>1. Motivation: a threshold sweeping along a line</h2>
-  <p>Scores live on a line. Let \(F_0\) and \(F_1\) denote the class-conditional CDFs of \(S\) under negatives and positives; \(f_0\), \(f_1\) are their densities where they exist. Sweep a threshold \(t\) from \(+\infty\) to \(-\infty\), predicting “positive” when \(S&gt;t\). The false-positive and true-positive rates are</p>
+  <h2>1. Motivation:</h2>
+  <p>Picture a threshold sweeping along a line. Scores live on the line. Let \(F_0\) and \(F_1\) denote the class-conditional CDFs of \(S\) under negatives and positives; \(f_0\), \(f_1\) are their densities where they exist. Sweep a threshold \(t\) from \(+\infty\) to \(-\infty\), predicting “positive” when \(S&gt;t\). The false-positive and true-positive rates are</p>
   \[
   \mathrm{FPR}(t)=\Pr(S&gt;t\mid 0)=1-F_0(t),\qquad
   \mathrm{TPR}(t)=\Pr(S&gt;t\mid 1)=1-F_1(t).
@@ -63,7 +63,7 @@ kramdown:
 
 <!-- THE CRUX -->
 <section>
-  <h2>2. The crux in one sentence</h2>
+  <h2>2. Thesis:</h2>
   <p><strong>AUC equals the probability that a randomly chosen positive receives a higher score than a randomly chosen negative.</strong> With independent scores \(S_1\sim f_1\) (positive) and \(S_0\sim f_0\):</p>
   \[
   \boxed{\ \mathrm{AUC}=\Pr(S_1&gt;S_0)\ +\ \tfrac{1}{2}\Pr(S_1=S_0)\ }.
@@ -75,7 +75,7 @@ kramdown:
 
 <!-- DERIVATION -->
 <section>
-  <h2>3. The derivation, start to finish</h2>
+  <h2>3. Derivation:</h2>
   <p>Start from the geometric definition:</p>
   \[
   \mathrm{AUC}=\int_{0}^{1} y(x)\,dx,\quad x(t)=1-F_0(t),\ \ y(t)=1-F_1(t).
