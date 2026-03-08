@@ -1,71 +1,60 @@
-<!-- _layouts/default.html -->
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page.title }}</title>
-  <!-- Link to main stylesheet -->
-  <link rel="stylesheet" href="/css/styles.css" />
-  <!-- Favicon Links -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="manifest" href="/site.webmanifest">
-  <!-- End Favicon Links -->
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK1BR8X0MN"></script>
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/css/styles.css' | relative_url }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
+  <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+  {% if site.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-QK1BR8X0MN');
+    gtag('config', '{{ site.google_analytics }}');
   </script>
-    <!-- Add mathjax: true to the front matter to load MathJax for LaTeX rendering. -->
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
-    ></script>
-  {{ script_injection }}
-  <!--Example USAGE:
-        ---
-        layout: default
-        ---
-        {% capture script_injection %}
-          <script
-            id="MathJax-script"
-            async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
-          ></script>
-        {% endcapture %}
-  -->
+  {% endif %}
+  {% if page.mathjax %}
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+  ></script>
+  {% endif %}
 </head>
 <body>
-  <header>
-    <h1>{{ page.title }}</h1>
-    <nav>
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <a href="{{ '/about.html' | relative_url }}">About</a>
-      <a href="{{ '/questioner.html' | relative_url }}">Icebreakers</a>
-    </nav>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <p class="site-brand">
+        <a href="{{ '/' | relative_url }}">gabrieldunin.com</a>
+      </p>
+      <h1 class="site-title">{{ page.title | default: site.title }}</h1>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/about.html' | relative_url }}">About</a>
+        <a href="{{ '/questioner.html' | relative_url }}">Icebreakers</a>
+      </nav>
+    </div>
   </header>
-  
-  <!-- The page-specific content goes here -->
-  <main style="max-width:700px; margin:2rem auto; font-family:sans-serif; line-height:1.6;">
-    {{ content }}
+
+  <main class="site-main">
+    <div class="prose">
+      {{ content }}
+    </div>
   </main>
 
-  <footer style="justify-content: space-between">
-    <p>&copy; 2025 Gabriel Dunin-Borkowski. Webpage under construction. Last Updated:
-        {% if page.date %}
-          {% assign update_source = page.date %}
-        {% else %}
-          {% assign update_source = site.time %}
-        {% endif %}
-      {{ update_source | date: "%Y-%m-%d" }}</p>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>&copy; {{ site.time | date: "%Y" }} Gabriel Dunin-Borkowski.</p>
+      {% if page.date %}
+      <p>Published {{ page.date | date: "%b %-d, %Y" }}</p>
+      {% endif %}
+    </div>
   </footer>
 </body>
 </html>

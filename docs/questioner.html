@@ -1,43 +1,44 @@
 ---
 layout: webapp
-title: "Question Viewer"
+title: Icebreaker Questions
+description: A lightweight random question picker for conversation prompts.
 ---
 
-  <p></p>
-  <p></p>
-  <button id="getQuestionBtn">Get a Random Question</button>
-  <div id="questionBox"></div>
-  <p></p>
-  <p></p>
-  <p>Just click through until you find a question you'd like to ask. Source: <a href="https://forum.effectivealtruism.org/posts/85tCJ6efR2hsQzZvu/big-list-of-icebreaker-questions?utm_campaign=post_share&utm_source=link">EA Forum</a></p>
-  <script>
-    let questions = [];
+<p class="lead">
+  Pick a random prompt and keep clicking until you find one you want to use.
+</p>
+<button id="getQuestionBtn" type="button">Get a Random Question</button>
+<div id="questionBox" aria-live="polite"></div>
+<p class="helper-text">
+  Source:
+  <a href="https://forum.effectivealtruism.org/posts/85tCJ6efR2hsQzZvu/big-list-of-icebreaker-questions?utm_campaign=post_share&utm_source=link">EA Forum</a>.
+</p>
 
-    // 1) Fetch the text file "questions.txt"
-    //    Each line in questions.txt is one question
-    fetch('questions.txt')
-      .then(response => response.text())
-      .then(data => {
-        // Split into lines, trim, filter empties
-        questions = data
-          .split('\n')
-          .map(line => line.trim())
-          .filter(line => line.length > 0);
-      })
-      .catch(error => {
-        console.error("Error loading questions:", error);
-      });
+<script>
+  const questionBox = document.getElementById('questionBox');
+  const button = document.getElementById('getQuestionBtn');
+  let questions = [];
 
-    // 2) On button click, pick a random question
-    document.getElementById('getQuestionBtn').addEventListener('click', () => {
-      if (questions.length === 0) {
-        document.getElementById('questionBox').innerText =
-          "No questions found or file not loaded yet.";
-        return;
-      }
-
-      // Generate a random index and display that question
-      const randomIndex = Math.floor(Math.random() * questions.length);
-      document.getElementById('questionBox').innerText = questions[randomIndex];
+  fetch('{{ "/questions.txt" | relative_url }}')
+    .then((response) => response.text())
+    .then((data) => {
+      questions = data
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0);
+    })
+    .catch((error) => {
+      console.error("Error loading questions:", error);
+      questionBox.innerText = "The question list could not be loaded.";
     });
-  </script>
+
+  button.addEventListener('click', () => {
+    if (questions.length === 0) {
+      questionBox.innerText = "No questions found or the file has not loaded yet.";
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    questionBox.innerText = questions[randomIndex];
+  });
+</script>
