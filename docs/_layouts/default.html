@@ -27,13 +27,12 @@
   ></script>
   {% endif %}
 </head>
-<body>
+<body class="{% if page.url == '/' %}page-home{% else %}page-standard{% endif %}">
   <header class="site-header">
     <div class="site-header__inner">
       <p class="site-brand">
-        <a href="{{ '/' | relative_url }}">gabrieldunin.com</a>
+        <a href="{{ '/' | relative_url }}">Gabriel Dunin</a>
       </p>
-      <h1 class="site-title">{{ page.title | default: site.title }}</h1>
       <nav class="site-nav" aria-label="Primary">
         <a href="{{ '/' | relative_url }}">Home</a>
         <a href="{{ '/about.html' | relative_url }}">About</a>
@@ -43,6 +42,14 @@
 
   <main class="site-main">
     <div class="prose">
+      {% unless page.url == '/' %}
+      <header class="page-header">
+        <h1 class="page-header__title">{{ page.title | default: site.title }}</h1>
+        {% if page.date %}
+        <p class="page-header__meta">Published {{ page.date | date: "%b %-d, %Y" }}</p>
+        {% endif %}
+      </header>
+      {% endunless %}
       {{ content }}
     </div>
   </main>
@@ -50,9 +57,7 @@
   <footer class="site-footer">
     <div class="site-footer__inner">
       <p>&copy; {{ site.time | date: "%Y" }} Gabriel Dunin-Borkowski.</p>
-      {% if page.date %}
-      <p>Published {{ page.date | date: "%b %-d, %Y" }}</p>
-      {% endif %}
+      <p><a href="mailto:gabriel.dunin@protonmail.com">gabriel.dunin@protonmail.com</a></p>
     </div>
   </footer>
 </body>
