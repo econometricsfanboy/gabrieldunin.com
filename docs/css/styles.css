@@ -162,6 +162,10 @@ th {
   box-shadow: var(--shadow);
 }
 
+.page-home .prose {
+  padding-top: clamp(1.15rem, 2.2vw, 1.65rem);
+}
+
 .prose > :first-child {
   margin-top: 0;
 }
@@ -196,46 +200,38 @@ th {
 }
 
 .home-hero {
-  margin-bottom: 2.25rem;
-}
-
-.home-hero__eyebrow {
-  margin-bottom: 0.9rem;
-  color: var(--accent-strong);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  margin-bottom: 1.6rem;
 }
 
 .home-hero__title {
-  margin: 0 0 0.9rem;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 1.05;
+  margin: 0 0 0.7rem;
+  font-size: clamp(1.95rem, 4.4vw, 2.7rem);
+  line-height: 0.98;
   letter-spacing: -0.03em;
-  max-width: 10ch;
+  max-width: none;
+  text-wrap: balance;
+  word-break: keep-all;
+  hyphens: none;
+}
+
+.home-hero__title span {
+  display: block;
 }
 
 .home-hero__lead {
-  margin-bottom: 1rem;
-  color: var(--text);
-  font-size: 1.25rem;
-  line-height: 1.45;
-  max-width: 34rem;
-}
-
-.home-hero__body {
-  max-width: 40rem;
+  margin-bottom: 0;
+  max-width: 32rem;
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.58;
 }
 
 .home-section + .home-section {
-  margin-top: 2rem;
+  margin-top: 1.6rem;
 }
 
 .section-heading {
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   font-size: 1.5rem;
 }
 
@@ -375,8 +371,12 @@ mjx-container[jax="CHTML"][display="true"] {
     align-items: flex-start;
   }
 
+  .home-hero__title {
+    font-size: 1.72rem;
+  }
+
   .home-hero__lead {
-    font-size: 1.12rem;
+    font-size: 1rem;
   }
 
   .post-card {
